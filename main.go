@@ -20,9 +20,7 @@ import (
 //go:embed github.css
 var gitHubCss string
 
-const htmlHeader = `<html>
-<head>
-<style type="text/css"><!--
+const htmlHeader = `<style type="text/css"><!--
 %s
 	html{
 		overflow-y: scroll;
@@ -54,8 +52,7 @@ const htmlHeader = `<html>
 	}
 
 // -->
-</style>
-</head><body class="markdown-body">`
+</style>`
 
 const htmlFooter = `</body></html>`
 
@@ -137,8 +134,14 @@ func withoutExt(path string) string {
 	return path[:bodyLen]
 }
 
-func (M *Markdown) Make(body, header, sidebar, footer string, w io.Writer) error {
-	fmt.Fprintf(w, htmlHeader, gitHubCss)
+func (M *Markdown) Make(body, header, sidebar, footer, css string, w io.Writer) error {
+	fmt.Fprintln(w, `<html><head>`)
+	if css != "" {
+		fmt.Fprintf(w, "<link rel=\"stylesheet\" href=\"%s\" />\n", css)
+	} else {
+		fmt.Fprintf(w, htmlHeader, gitHubCss)
+	}
+	fmt.Fprintln(w, "</head><body class=\"markdown-body\">")
 
 	fmt.Fprintln(w, "<div class=\"main\">")
 	if err := M.makePage(header, "header", w); err != nil {
@@ -162,6 +165,7 @@ var (
 	flagSidebar = flag.String("sidebar", "", "Specify sidebar")
 	flagHeader  = flag.String("header", "", "Specify header")
 	flagFooter  = flag.String("footer", "", "Specify footer")
+	flagCSS     = flag.String("css", "", "Specify CSS URL")
 )
 
 func mains(args []string) error {
@@ -169,7 +173,7 @@ func mains(args []string) error {
 	if len(args) <= 0 {
 		return io.EOF
 	}
-	return m.Make(args[0], *flagHeader, *flagSidebar, *flagFooter, os.Stdout)
+	return m.Make(args[0], *flagHeader, *flagSidebar, *flagFooter, *flagCSS, os.Stdout)
 }
 
 func main() {

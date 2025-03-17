@@ -24,23 +24,28 @@ const htmlHeader = `<html>
 <head>
 <style type="text/css"><!--
 %s
+	html{
+		overflow-y: scroll;
+	}
 	.markdown-body {
+		/*
 		box-sizing: border-box;
-		min-width: 200px;
+		min-width: 200px; */
+
 		max-width: 980px;
 		margin: 0 auto;
+
+		display: flex;
 		padding: 45px;
 	}
-
-	@media /* (max-width: 767px)*/ {
+	@media (max-width: 767px) {
 		.markdown-body {
 			padding: 15px;
 		}
 	}
-
 	@media screen{
-		div.sidebar{ float:right; width:25% ; /* word-break: break-all; */font-size:90%}
-		div.main{ float:left; width:70% }
+		div.sidebar{ width:250px ; font-size:90%%; box-sizing: border-box; }
+		div.main{ flex:1; box-sizing: border-box;}
 	}
 
 	@media print{
@@ -50,7 +55,7 @@ const htmlHeader = `<html>
 
 // -->
 </style>
-</head><body class="markdown-body" style="display:flex">`
+</head><body class="markdown-body">`
 
 const htmlFooter = `</body></html>`
 

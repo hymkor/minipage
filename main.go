@@ -114,7 +114,7 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	})
 	// println(string(source))
 
-	fmt.Fprintf(w, "<div class=\"%s markdown-body\">\n", class)
+	fmt.Fprintf(w, "<div class=\"%s\">\n", class)
 	err = M.Convert(source, w)
 	fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
 	return err
@@ -134,7 +134,7 @@ func (M *Markdown) Make(body, header, sidebar, footer, css string, w io.Writer) 
 	}
 	fmt.Fprintln(w, "</head><body>")
 
-	fmt.Fprintln(w, "<div class=\"main\">")
+	fmt.Fprintln(w, "<div class=\"main markdown-body\">")
 	if err := M.makePage(header, "header", w); err != nil {
 		return err
 	}
@@ -145,7 +145,7 @@ func (M *Markdown) Make(body, header, sidebar, footer, css string, w io.Writer) 
 		return err
 	}
 	fmt.Fprintln(w, "</div><!-- \"main\" -->")
-	if err := M.makePage(sidebar, "sidebar", w); err != nil {
+	if err := M.makePage(sidebar, "sidebar markdown-body", w); err != nil {
 		return err
 	}
 	fmt.Fprintln(w, htmlFooter)

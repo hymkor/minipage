@@ -22,32 +22,23 @@ var gitHubCss string
 
 const htmlHeader = `<style type="text/css"><!--
 %s
-	html{
-		overflow-y: scroll;
-	}
 	.markdown-body {
-		/*
 		box-sizing: border-box;
-		min-width: 200px; */
-
 		max-width: 980px;
 		margin: 0 auto;
-
-		display: flex;
 		padding: 45px;
 	}
-	@media (max-width: 767px) {
-		.markdown-body {
-			padding: 15px;
-		}
+	body{
+		display:flex;
+		overflow-y: scroll;
 	}
 	@media screen{
-		div.sidebar{ width:250px ; font-size:90%%; box-sizing: border-box; }
-		div.main{ flex:1; box-sizing: border-box;}
+		div.sidebar{ width:30%% }
+		div.main{ width:70%% }
 	}
 
 	@media print{
-		div.sidebar,div.footer,div.adminmenu{ display:none }
+		div.sidebar,div.footer{ display:none }
 		div.main{ width:100% }
 	}
 
@@ -123,7 +114,7 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	})
 	// println(string(source))
 
-	fmt.Fprintf(w, "<div class=\"%s\">\n", class)
+	fmt.Fprintf(w, "<div class=\"%s markdown-body\">\n", class)
 	err = M.Convert(source, w)
 	fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
 	return err
@@ -141,7 +132,7 @@ func (M *Markdown) Make(body, header, sidebar, footer, css string, w io.Writer) 
 	} else {
 		fmt.Fprintf(w, htmlHeader, gitHubCss)
 	}
-	fmt.Fprintln(w, "</head><body class=\"markdown-body\">")
+	fmt.Fprintln(w, "</head><body>")
 
 	fmt.Fprintln(w, "<div class=\"main\">")
 	if err := M.makePage(header, "header", w); err != nil {

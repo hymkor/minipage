@@ -12,3 +12,4 @@ options
 - `-footer FOOTER.MD` - specify the Markdown file for the footer
 - `-sidebar SIDEBAR.MD` - specify the Markdown file for the sidebar
 - `-css CSSURL` - specify the URL of CSS
+- `-title TITLE` - specify title text

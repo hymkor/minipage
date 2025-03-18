@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"flag"
 	"fmt"
+	"html"
 	"io"
 	"os"
 	"path/filepath"
@@ -125,8 +126,11 @@ func withoutExt(path string) string {
 	return path[:bodyLen]
 }
 
-func (M *Markdown) Make(body, header, sidebar, footer, css string, w io.Writer) error {
+func (M *Markdown) Make(body, header, sidebar, footer, css, title string, w io.Writer) error {
 	fmt.Fprintln(w, `<html><head>`)
+	if title != "" {
+		fmt.Fprintf(w, "<title>%s</title>\n", html.EscapeString(title))
+	}
 	if css != "" {
 		fmt.Fprintf(w, "<link rel=\"stylesheet\" href=\"%s\" />\n", css)
 	} else {
@@ -157,6 +161,7 @@ var (
 	flagHeader  = flag.String("header", "", "Specify header")
 	flagFooter  = flag.String("footer", "", "Specify footer")
 	flagCSS     = flag.String("css", "", "Specify CSS URL")
+	flagTitle   = flag.String("title", "", "Specify TITLE")
 )
 
 func mains(args []string) error {
@@ -164,7 +169,7 @@ func mains(args []string) error {
 	if len(args) <= 0 {
 		return io.EOF
 	}
-	return m.Make(args[0], *flagHeader, *flagSidebar, *flagFooter, *flagCSS, os.Stdout)
+	return m.Make(args[0], *flagHeader, *flagSidebar, *flagFooter, *flagCSS, *flagTitle, os.Stdout)
 }
 
 func main() {

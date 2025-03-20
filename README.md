@@ -66,6 +66,11 @@ all:
 
 The website for [nyagos](https://nyaos.org/nyagos), a command-line shell for Windows, is built using **minipage**.
 
+## Technical Details
+
+- **Markdown to HTML Conversion:** Powered by [goldmark](https://github.com/yuin/goldmark), a CommonMark-compliant Markdown parser written in Go that is easy to extend and well-structured.
+- **GitHub-like CSS:** Uses [github-markdown-css](https://github.com/sindresorhus/github-markdown-css), a minimal CSS file that replicates the GitHub Markdown style.
+
 ## Why minipage?
 
 If you value:

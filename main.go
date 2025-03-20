@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark-meta"
@@ -157,20 +158,25 @@ func (M *Markdown) Make(body, header, sidebar, footer, css, title string, w io.W
 }
 
 var (
-	flagSidebar = flag.String("sidebar", "", "Specify sidebar")
-	flagHeader  = flag.String("header", "", "Specify header")
-	flagFooter  = flag.String("footer", "", "Specify footer")
-	flagCSS     = flag.String("css", "", "Specify CSS URL")
-	flagTitle   = flag.String("title", "", "Specify TITLE")
+	flagHeader  = flag.String("header", "", "Include a Markdown file as the header.")
+	flagFooter  = flag.String("footer", "", "Include a Markdown file as the footer.")
+	flagSidebar = flag.String("sidebar", "", "Include a Markdown file as the sidebar.")
+	flagCSS     = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
+	flagTitle   = flag.String("title", "", "Specify the page title.")
 )
 
 func mains(args []string) error {
 	m := New()
 	if len(args) <= 0 {
-		return io.EOF
+		fmt.Fprintf(os.Stderr, "minipage %s-%s-%s/%s\n\n",
+			version, runtime.GOOS, runtime.GOARCH, runtime.Version())
+		flag.Usage()
+		return nil
 	}
 	return m.Make(args[0], *flagHeader, *flagSidebar, *flagFooter, *flagCSS, *flagTitle, os.Stdout)
 }
+
+var version string
 
 func main() {
 	flag.Parse()

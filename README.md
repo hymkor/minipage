@@ -1,6 +1,6 @@
 # minipage - Minimal Static Page Generator
 
-**minipage** is a lightweight static site generator designed for simplicity and speed. If you've ever been frustrated by the cluttered interface or sluggish performance of GitHub's markdown viewer, **minipage** is for you.
+**minipage** is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, **minipage** is for you.
 
 If you'd like to use **GitHub Pages** but find existing static site generators too complex or heavy, **minipage** is a lightweight alternative that gets the job done.
 
@@ -76,7 +76,7 @@ The website for [nyagos](https://nyaos.org/nyagos), a command-line shell for Win
 If you value:
 
 ✅ Clean, distraction-free Markdown rendering  
-✅ Fast performance without unnecessary overhead  
+✅ Straightforward usage without complex configurations  
 ✅ Simple workflows that integrate with existing tools  
 
 **minipage** is designed for you.

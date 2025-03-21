@@ -2,7 +2,7 @@
     "version": "0.1.0",
     "description": "Minimal Static Page Generator",
     "homepage": "https://github.com/hymkor/minipage",
-    "license": "MIT",
+    "license": "MIT License",
     "architecture": {
         "64bit": {
             "url": "https://github.com/hymkor/minipage/releases/download/v0.1.0/minipage-v0.1.0-windows-amd64.zip",

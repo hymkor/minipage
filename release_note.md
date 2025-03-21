@@ -1,6 +1,12 @@
 Release notes
 =============
 
+- Removed `-header` and `-footer` options. Markdown files are now specified directly in the command:
+
+```
+minipage HEADER.md BODY.md FOOTER.md > OUTPUT.html
+```
+
 v0.2.0
 ------
 Mar 21, 2025

@@ -8,7 +8,7 @@ With **minipage**, you can render Markdown into clean, GitHub-like HTML without 
 
 ## Features
 
-- **Fast and Simple:** Converts a Markdown file into a single HTML page in one command.
+- **Fast and Simple:** Converts one or more Markdown files into a single HTML page in one command.
 - **Customizable Layout:** Optionally include a header, footer, and sidebar for layout consistency.
 - **Lightweight by Design:** No configuration files — just straightforward options.
 - **Flexible Workflow:** Designed to be called from `make` or similar build tools to construct full websites.
@@ -35,13 +35,11 @@ scoop install minipage
 ## Usage
 
 ```
-minipage {options} MARKDOWN.md > OUTPUT.html
+minipage {options} FILE1.md [FILE2.md ...] > OUTPUT.html
 ```
 
 ### Options
 
-- `-header HEADER.MD` — Include a Markdown file as the header.
-- `-footer FOOTER.MD` — Include a Markdown file as the footer.
 - `-sidebar SIDEBAR.MD` — Include a Markdown file as the sidebar.
 - `-css CSSURL` — Specify a custom CSS URL (default: GitHub-like CSS).
 - `-title TITLE` — Specify the page title.
@@ -49,18 +47,18 @@ minipage {options} MARKDOWN.md > OUTPUT.html
 
 ## Example
 
-To build a simple page with a custom header and footer:
+To build a simple page with multiple sections:
 
 ```
-minipage -header header.md -footer footer.md content.md > index.html
+minipage header.md content.md footer.md > index.html
 ```
 
 Combine it with `make` for efficient site generation:
 
 ```makefile
 all:
-	minipage -header header.md -footer footer.md index.md > index.html
-	minipage -header header.md -footer footer.md about.md > about.html
+	minipage header.md index.md footer.md > index.html
+	minipage header.md about.md footer.md > about.html
 ```
 
 ## Example Use Case

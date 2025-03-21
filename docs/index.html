@@ -1130,14 +1130,13 @@
 // -->
 </style></head><body>
 <div class="main markdown-body">
-<div class="body">
 <h1 id="minipage---minimal-static-page-generator">minipage - Minimal Static Page Generator <a href="#minipage---minimal-static-page-generator">.</a></h1>
 <p><strong>minipage</strong> is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, <strong>minipage</strong> is for you.</p>
 <p>If you'd like to use <strong>GitHub Pages</strong> but find existing static site generators too complex or heavy, <strong>minipage</strong> is a lightweight alternative that gets the job done.</p>
 <p>With <strong>minipage</strong>, you can render Markdown into clean, GitHub-like HTML without sidebars, banners, or other distractions. It generates one page at a time, giving you full control over your site's structure using tools like <code>make</code>.</p>
 <h2 id="features">Features <a href="#features">.</a></h2>
 <ul>
-<li><strong>Fast and Simple:</strong> Converts a Markdown file into a single HTML page in one command.</li>
+<li><strong>Fast and Simple:</strong> Converts one or more Markdown files into a single HTML page in one command.</li>
 <li><strong>Customizable Layout:</strong> Optionally include a header, footer, and sidebar for layout consistency.</li>
 <li><strong>Lightweight by Design:</strong> No configuration files — just straightforward options.</li>
 <li><strong>Flexible Workflow:</strong> Designed to be called from <code>make</code> or similar build tools to construct full websites.</li>
@@ -1154,25 +1153,23 @@
 scoop install minipage
 </code></pre>
 <h2 id="usage">Usage <a href="#usage">.</a></h2>
-<pre><code>minipage {options} MARKDOWN.md &gt; OUTPUT.html
+<pre><code>minipage {options} FILE1.md [FILE2.md ...] &gt; OUTPUT.html
 </code></pre>
 <h3 id="options">Options <a href="#options">.</a></h3>
 <ul>
-<li><code>-header HEADER.MD</code> — Include a Markdown file as the header.</li>
-<li><code>-footer FOOTER.MD</code> — Include a Markdown file as the footer.</li>
 <li><code>-sidebar SIDEBAR.MD</code> — Include a Markdown file as the sidebar.</li>
 <li><code>-css CSSURL</code> — Specify a custom CSS URL (default: GitHub-like CSS).</li>
 <li><code>-title TITLE</code> — Specify the page title.</li>
 <li><code>-anchor-text string</code> — Specify the anchor text (default &quot;.&quot;).</li>
 </ul>
 <h2 id="example">Example <a href="#example">.</a></h2>
-<p>To build a simple page with a custom header and footer:</p>
-<pre><code>minipage -header header.md -footer footer.md content.md &gt; index.html
+<p>To build a simple page with multiple sections:</p>
+<pre><code>minipage header.md content.md footer.md &gt; index.html
 </code></pre>
 <p>Combine it with <code>make</code> for efficient site generation:</p>
 <pre><code class="language-makefile">all:
-	minipage -header header.md -footer footer.md index.md &gt; index.html
-	minipage -header header.md -footer footer.md about.md &gt; about.html
+	minipage header.md index.md footer.md &gt; index.html
+	minipage header.md about.md footer.md &gt; about.html
 </code></pre>
 <h2 id="example-use-case">Example Use Case <a href="#example-use-case">.</a></h2>
 <p>The website for <a href="https://nyaos.org/nyagos">nyagos</a>, a command-line shell for Windows, is built using <strong>minipage</strong>.</p>
@@ -1187,6 +1184,5 @@ scoop install minipage
 ✅ Straightforward usage without complex configurations<br>
 ✅ Simple workflows that integrate with existing tools</p>
 <p><strong>minipage</strong> is designed for you.</p>
-</div><!-- "body" -->
 </div><!-- "main" -->
 </body></html>

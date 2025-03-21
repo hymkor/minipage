@@ -1131,21 +1131,21 @@
 </style></head><body>
 <div class="main markdown-body">
 <div class="body">
-<h1 id="minipage---minimal-static-page-generator">minipage - Minimal Static Page Generator</h1>
+<h1 id="minipage---minimal-static-page-generator">minipage - Minimal Static Page Generator <a href="#minipage---minimal-static-page-generator">.</a></h1>
 <p><strong>minipage</strong> is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, <strong>minipage</strong> is for you.</p>
 <p>If you'd like to use <strong>GitHub Pages</strong> but find existing static site generators too complex or heavy, <strong>minipage</strong> is a lightweight alternative that gets the job done.</p>
 <p>With <strong>minipage</strong>, you can render Markdown into clean, GitHub-like HTML without sidebars, banners, or other distractions. It generates one page at a time, giving you full control over your site's structure using tools like <code>make</code>.</p>
-<h2 id="features">Features</h2>
+<h2 id="features">Features <a href="#features">.</a></h2>
 <ul>
 <li><strong>Fast and Simple:</strong> Converts a Markdown file into a single HTML page in one command.</li>
 <li><strong>Customizable Layout:</strong> Optionally include a header, footer, and sidebar for layout consistency.</li>
 <li><strong>Lightweight by Design:</strong> No configuration files — just straightforward options.</li>
 <li><strong>Flexible Workflow:</strong> Designed to be called from <code>make</code> or similar build tools to construct full websites.</li>
 </ul>
-<h2 id="installation">Installation</h2>
-<h3 id="from-github-releases">From GitHub Releases</h3>
+<h2 id="installation">Installation <a href="#installation">.</a></h2>
+<h3 id="from-github-releases">From GitHub Releases <a href="#from-github-releases">.</a></h3>
 <p>Download the appropriate <code>.zip</code> file for your OS and architecture from the <a href="https://github.com/hymkor/minipage/releases">releases page</a>. Extract the archive and place the <code>minipage</code> executable in a directory listed in your <code>PATH</code>.</p>
-<h3 id="using-scoop-windows">Using Scoop (Windows)</h3>
+<h3 id="using-scoop-windows">Using Scoop (Windows) <a href="#using-scoop-windows">.</a></h3>
 <p>For Windows users, you can install <strong>minipage</strong> via <a href="https://scoop.sh/">Scoop</a>:</p>
 <pre><code>scoop install https://raw.githubusercontent.com/hymkor/minipage/master/minipage.json
 </code></pre>
@@ -1153,18 +1153,19 @@
 <pre><code>scoop bucket add hymkor https://github.com/hymkor/scoop-bucket
 scoop install minipage
 </code></pre>
-<h2 id="usage">Usage</h2>
+<h2 id="usage">Usage <a href="#usage">.</a></h2>
 <pre><code>minipage {options} MARKDOWN.md &gt; OUTPUT.html
 </code></pre>
-<h3 id="options">Options</h3>
+<h3 id="options">Options <a href="#options">.</a></h3>
 <ul>
 <li><code>-header HEADER.MD</code> — Include a Markdown file as the header.</li>
 <li><code>-footer FOOTER.MD</code> — Include a Markdown file as the footer.</li>
 <li><code>-sidebar SIDEBAR.MD</code> — Include a Markdown file as the sidebar.</li>
 <li><code>-css CSSURL</code> — Specify a custom CSS URL (default: GitHub-like CSS).</li>
 <li><code>-title TITLE</code> — Specify the page title.</li>
+<li><code>-anchor-text string</code> — Specify the anchor text (default &quot;.&quot;).</li>
 </ul>
-<h2 id="example">Example</h2>
+<h2 id="example">Example <a href="#example">.</a></h2>
 <p>To build a simple page with a custom header and footer:</p>
 <pre><code>minipage -header header.md -footer footer.md content.md &gt; index.html
 </code></pre>
@@ -1173,14 +1174,14 @@ scoop install minipage
 	minipage -header header.md -footer footer.md index.md &gt; index.html
 	minipage -header header.md -footer footer.md about.md &gt; about.html
 </code></pre>
-<h2 id="example-use-case">Example Use Case</h2>
+<h2 id="example-use-case">Example Use Case <a href="#example-use-case">.</a></h2>
 <p>The website for <a href="https://nyaos.org/nyagos">nyagos</a>, a command-line shell for Windows, is built using <strong>minipage</strong>.</p>
-<h2 id="technical-details">Technical Details</h2>
+<h2 id="technical-details">Technical Details <a href="#technical-details">.</a></h2>
 <ul>
 <li><strong>Markdown to HTML Conversion:</strong> Powered by <a href="https://github.com/yuin/goldmark">goldmark</a>, a CommonMark-compliant Markdown parser written in Go that is easy to extend and well-structured.</li>
 <li><strong>GitHub-like CSS:</strong> Uses <a href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a>, a minimal CSS file that replicates the GitHub Markdown style.</li>
 </ul>
-<h2 id="why-minipage">Why minipage?</h2>
+<h2 id="why-minipage">Why minipage? <a href="#why-minipage">.</a></h2>
 <p>If you value:</p>
 <p>✅ Clean, distraction-free Markdown rendering<br>
 ✅ Straightforward usage without complex configurations<br>

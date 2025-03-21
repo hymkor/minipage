@@ -17,6 +17,8 @@ import (
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	// goldmarkHtml "github.com/yuin/goldmark/renderer/html"
+
+	"go.abhg.dev/goldmark/anchor"
 )
 
 //go:embed github.css
@@ -53,7 +55,7 @@ type Markdown struct {
 	goldmark.Markdown
 }
 
-func New() *Markdown {
+func New(anchorText string) *Markdown {
 	options := []goldmark.Option{
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID()),
@@ -66,7 +68,10 @@ func New() *Markdown {
 				})),
 			extension.TaskList,
 			extension.Footnote,
-			meta.New(meta.WithTable())),
+			meta.New(meta.WithTable()),
+			&anchor.Extender{
+				Texter:     anchor.Text(anchorText),
+				Attributer: anchor.Attributes{}}),
 	}
 	return &Markdown{
 		Markdown: goldmark.New(options...),
@@ -158,15 +163,16 @@ func (M *Markdown) Make(body, header, sidebar, footer, css, title string, w io.W
 }
 
 var (
-	flagHeader  = flag.String("header", "", "Include a Markdown file as the header.")
-	flagFooter  = flag.String("footer", "", "Include a Markdown file as the footer.")
-	flagSidebar = flag.String("sidebar", "", "Include a Markdown file as the sidebar.")
-	flagCSS     = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
-	flagTitle   = flag.String("title", "", "Specify the page title.")
+	flagHeader     = flag.String("header", "", "Include a Markdown file as the header")
+	flagFooter     = flag.String("footer", "", "Include a Markdown file as the footer")
+	flagSidebar    = flag.String("sidebar", "", "Include a Markdown file as the sidebar")
+	flagCSS        = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
+	flagTitle      = flag.String("title", "", "Specify the page title")
+	flagAnchorText = flag.String("anchor-text", ".", "Specify the anchor text")
 )
 
 func mains(args []string) error {
-	m := New()
+	m := New(*flagAnchorText)
 	if len(args) <= 0 {
 		fmt.Fprintf(os.Stderr, "minipage %s-%s-%s/%s\n\n",
 			version, runtime.GOOS, runtime.GOARCH, runtime.Version())

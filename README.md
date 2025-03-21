@@ -45,6 +45,7 @@ minipage {options} MARKDOWN.md > OUTPUT.html
 - `-sidebar SIDEBAR.MD` — Include a Markdown file as the sidebar.
 - `-css CSSURL` — Specify a custom CSS URL (default: GitHub-like CSS).
 - `-title TITLE` — Specify the page title.
+- `-anchor-text string` — Specify the anchor text (default ".").
 
 ## Example
 

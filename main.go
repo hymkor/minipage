@@ -121,9 +121,13 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	})
 	// println(string(source))
 
-	fmt.Fprintf(w, "<div class=\"%s\">\n", class)
+	if class != "" {
+		fmt.Fprintf(w, "<div class=\"%s\">\n", class)
+	}
 	err = M.Convert(source, w)
-	fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
+	if class != "" {
+		fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
+	}
 	return err
 }
 
@@ -132,7 +136,7 @@ func withoutExt(path string) string {
 	return path[:bodyLen]
 }
 
-func (M *Markdown) Make(body, header, sidebar, footer, css, title string, w io.Writer) error {
+func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer) error {
 	fmt.Fprintln(w, `<html><head>`)
 	if title != "" {
 		fmt.Fprintf(w, "<title>%s</title>\n", html.EscapeString(title))
@@ -145,14 +149,10 @@ func (M *Markdown) Make(body, header, sidebar, footer, css, title string, w io.W
 	fmt.Fprintln(w, "</head><body>")
 
 	fmt.Fprintln(w, "<div class=\"main markdown-body\">")
-	if err := M.makePage(header, "header", w); err != nil {
-		return err
-	}
-	if err := M.makePage(body, "body", w); err != nil {
-		return err
-	}
-	if err := M.makePage(footer, "footer", w); err != nil {
-		return err
+	for _, body := range bodies {
+		if err := M.makePage(body, "", w); err != nil {
+			return err
+		}
 	}
 	fmt.Fprintln(w, "</div><!-- \"main\" -->")
 	if err := M.makePage(sidebar, "sidebar markdown-body", w); err != nil {
@@ -163,8 +163,6 @@ func (M *Markdown) Make(body, header, sidebar, footer, css, title string, w io.W
 }
 
 var (
-	flagHeader     = flag.String("header", "", "Include a Markdown file as the header")
-	flagFooter     = flag.String("footer", "", "Include a Markdown file as the footer")
 	flagSidebar    = flag.String("sidebar", "", "Include a Markdown file as the sidebar")
 	flagCSS        = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
 	flagTitle      = flag.String("title", "", "Specify the page title")
@@ -179,7 +177,7 @@ func mains(args []string) error {
 		flag.Usage()
 		return nil
 	}
-	return m.Make(args[0], *flagHeader, *flagSidebar, *flagFooter, *flagCSS, *flagTitle, os.Stdout)
+	return m.Make(args, *flagSidebar, *flagCSS, *flagTitle, os.Stdout)
 }
 
 var version string

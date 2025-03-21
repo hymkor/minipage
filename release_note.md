@@ -1,6 +1,10 @@
 Release notes
 =============
 
+v0.3.0
+------
+Mar 22, 2025
+
 - Removed `-header` and `-footer` options. Markdown files are now specified directly in the command:
 
 ```

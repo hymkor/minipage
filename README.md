@@ -18,6 +18,13 @@ With **minipage**, you can render Markdown into clean, GitHub-like HTML without 
 ### From GitHub Releases
 Download the appropriate `.zip` file for your OS and architecture from the [releases page](https://github.com/hymkor/minipage/releases). Extract the archive and place the `minipage` executable in a directory listed in your `PATH`.
 
+### Using `go install` (any OS)
+To install **minipage** using Go, run the following command:
+
+```
+go install github.com/hymkor/minipage@latest
+```
+
 ### Using Scoop (Windows)
 For Windows users, you can install **minipage** via [Scoop](https://scoop.sh/):
 
@@ -29,7 +36,7 @@ Alternatively, add the `hymkor` bucket and install:
 
 ```
 scoop bucket add hymkor https://github.com/hymkor/scoop-bucket
-scoop install minipage
+scoop install hymkor/minipage
 ```
 
 ## Usage
@@ -79,5 +86,3 @@ If you value:
 ✅ Simple workflows that integrate with existing tools  
 
 **minipage** is designed for you.
-
-

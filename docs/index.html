@@ -1144,13 +1144,17 @@
 <h2 id="installation">Installation <a href="#installation">.</a></h2>
 <h3 id="from-github-releases">From GitHub Releases <a href="#from-github-releases">.</a></h3>
 <p>Download the appropriate <code>.zip</code> file for your OS and architecture from the <a href="https://github.com/hymkor/minipage/releases">releases page</a>. Extract the archive and place the <code>minipage</code> executable in a directory listed in your <code>PATH</code>.</p>
+<h3 id="using-go-install-any-os">Using <code>go install</code> (any OS) <a href="#using-go-install-any-os">.</a></h3>
+<p>To install <strong>minipage</strong> using Go, run the following command:</p>
+<pre><code>go install github.com/hymkor/minipage@latest
+</code></pre>
 <h3 id="using-scoop-windows">Using Scoop (Windows) <a href="#using-scoop-windows">.</a></h3>
 <p>For Windows users, you can install <strong>minipage</strong> via <a href="https://scoop.sh/">Scoop</a>:</p>
 <pre><code>scoop install https://raw.githubusercontent.com/hymkor/minipage/master/minipage.json
 </code></pre>
 <p>Alternatively, add the <code>hymkor</code> bucket and install:</p>
 <pre><code>scoop bucket add hymkor https://github.com/hymkor/scoop-bucket
-scoop install minipage
+scoop install hymkor/minipage
 </code></pre>
 <h2 id="usage">Usage <a href="#usage">.</a></h2>
 <pre><code>minipage {options} FILE1.md [FILE2.md ...] &gt; OUTPUT.html

@@ -137,7 +137,7 @@ func withoutExt(path string) string {
 }
 
 func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer) error {
-	fmt.Fprintln(w, `<html><head>`)
+	fmt.Fprintln(w, `<!DOCTYPE html><html><head>`)
 	if title != "" {
 		fmt.Fprintf(w, "<title>%s</title>\n", html.EscapeString(title))
 	}

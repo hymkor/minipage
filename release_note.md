@@ -1,6 +1,9 @@
 Release notes
 =============
 
+- Insert `<!DOCTYPE html>` into generated HTML
+- Implement `-title-from-file` option to use the contents of a specified file as the HTML title
+
 v0.3.0
 ------
 Mar 22, 2025

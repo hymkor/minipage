@@ -167,6 +167,7 @@ var (
 	flagCSS        = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
 	flagTitle      = flag.String("title", "", "Specify the page title")
 	flagAnchorText = flag.String("anchor-text", ".", "Specify the anchor text")
+	flagTitleFile  = flag.String("title-from-file", "", "Read the HTML title from the specified `file`")
 )
 
 func mains(args []string) error {
@@ -177,7 +178,23 @@ func mains(args []string) error {
 		flag.Usage()
 		return nil
 	}
-	return m.Make(args, *flagSidebar, *flagCSS, *flagTitle, os.Stdout)
+	title := *flagTitle
+	if title == "" {
+		if *flagTitleFile == "-" {
+			if b, err := io.ReadAll(os.Stdin); err != nil {
+				return err
+			} else {
+				title = string(b)
+			}
+		} else if *flagTitleFile != "" {
+			if b, err := os.ReadFile(*flagTitleFile); err != nil {
+				return err
+			} else {
+				title = string(b)
+			}
+		}
+	}
+	return m.Make(args, *flagSidebar, *flagCSS, title, os.Stdout)
 }
 
 var version string

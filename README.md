@@ -51,6 +51,7 @@ minipage {options} FILE1.md [FILE2.md ...] > OUTPUT.html
 - `-css CSSURL` — Specify a custom CSS URL (default: GitHub-like CSS).
 - `-title TITLE` — Specify the page title.
 - `-anchor-text string` — Specify the anchor text (default ".").
+- `-title-from-file file` - Read the HTML title from the specified file
 
 ## Example
 

@@ -202,6 +202,12 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 	return nil
 }
 
+func (M *Markdown) EnableReadmeToIndex() {
+	M.urlFilter = append(M.urlFilter, func(s []byte) []byte {
+		return bytes.ReplaceAll(s, []byte("README"), []byte("index"))
+	})
+}
+
 var (
 	flagSidebar    = flag.String("sidebar", "", "Include a Markdown file as the sidebar")
 	flagCSS        = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
@@ -222,9 +228,7 @@ func mains(args []string) error {
 		return nil
 	}
 	if *flagReadmeToIndex {
-		m.urlFilter = append(m.urlFilter, func(s []byte) []byte {
-			return bytes.ReplaceAll(s, []byte("README"), []byte("index"))
-		})
+		m.EnableReadmeToIndex()
 	}
 	title := *flagTitle
 	if title == "" {

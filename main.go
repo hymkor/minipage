@@ -128,7 +128,7 @@ func readFileOrStdin(path string) ([]byte, error) {
 	return os.ReadFile(path)
 }
 
-func (M *Markdown) filter(source []byte) []byte {
+func (M *Markdown) rewriteLinks(source []byte) []byte {
 	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor1, source, func(s [][]byte) []byte {
 		url := s[2]
 		if bytes.HasPrefix(url, []byte("http")) {
@@ -160,7 +160,7 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	if err != nil {
 		return err
 	}
-	source = M.filter(source)
+	source = M.rewriteLinks(source)
 	if class != "" {
 		fmt.Fprintf(w, "<div class=\"%s\">\n", class)
 	}

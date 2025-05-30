@@ -9,7 +9,7 @@ func TestEnableReadmeToIndex1(t *testing.T) {
 	M := New("#")
 	M.EnableReadmeToIndex()
 
-	result := M.filter([]byte("[README_ja](./README_ja.md)"))
+	result := M.rewriteLinks([]byte("[README_ja](./README_ja.md)"))
 	expect := []byte("[README_ja](./index_ja.html)")
 
 	if !bytes.Equal(result, expect) {
@@ -21,7 +21,7 @@ func TestEnableReadmeToIndex2(t *testing.T) {
 	M := New("#")
 	M.EnableReadmeToIndex()
 
-	result := M.filter([]byte("[README_ja]: ./README_ja.md"))
+	result := M.rewriteLinks([]byte("[README_ja]: ./README_ja.md"))
 	expect := []byte("[README_ja]: ./index_ja.html")
 
 	if !bytes.Equal(result, expect) {

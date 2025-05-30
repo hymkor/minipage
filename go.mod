@@ -1,6 +1,6 @@
 module github.com/hymkor/minipage
 
-go 1.23
+go 1.24.1
 
 require (
 	github.com/yuin/goldmark v1.7.8

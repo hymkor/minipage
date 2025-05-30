@@ -65,7 +65,7 @@ const htmlFooter = `</body></html>`
 
 type Markdown struct {
 	goldmark.Markdown
-	urlFilter []func([]byte) []byte
+	linkRewriters []func([]byte) []byte
 }
 
 type customTexter []byte
@@ -134,7 +134,7 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 		if bytes.HasPrefix(url, []byte("http")) {
 			return s[0]
 		}
-		for _, f := range M.urlFilter {
+		for _, f := range M.linkRewriters {
 			url = f(url)
 		}
 		return concat(s[1], url, []byte(".html)"))
@@ -144,7 +144,7 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 		if bytes.HasPrefix(url, []byte("http")) {
 			return s[0]
 		}
-		for _, f := range M.urlFilter {
+		for _, f := range M.linkRewriters {
 			url = f(url)
 		}
 		return concat(s[1], url, []byte(".html"))
@@ -203,7 +203,7 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 }
 
 func (M *Markdown) EnableReadmeToIndex() {
-	M.urlFilter = append(M.urlFilter, func(s []byte) []byte {
+	M.linkRewriters = append(M.linkRewriters, func(s []byte) []byte {
 		return bytes.ReplaceAll(s, []byte("README"), []byte("index"))
 	})
 }

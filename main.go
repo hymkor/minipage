@@ -121,22 +121,14 @@ func concat(srcs ...[]byte) []byte {
 	return r
 }
 
-func (M *Markdown) makePage(path, class string, w io.Writer) error {
-	if path == "" {
-		return nil
-	}
-	var source []byte
-	var err error
-
+func readFileOrStdin(path string) ([]byte, error) {
 	if path == "-" {
-		source, err = io.ReadAll(os.Stdin)
-	} else {
-		source, err = os.ReadFile(path)
+		return io.ReadAll(os.Stdin)
 	}
-	if err != nil {
-		return err
-	}
+	return os.ReadFile(path)
+}
 
+func (M *Markdown) filter(source []byte) []byte {
 	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor1, source, func(s [][]byte) []byte {
 		url := s[2]
 		if bytes.HasPrefix(url, []byte("http")) {
@@ -157,8 +149,18 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 		}
 		return concat(s[1], url, []byte(".html"))
 	})
-	// println(string(source))
+	return source
+}
 
+func (M *Markdown) makePage(path, class string, w io.Writer) error {
+	if path == "" {
+		return nil
+	}
+	source, err := readFileOrStdin(path)
+	if err != nil {
+		return err
+	}
+	source = M.filter(source)
 	if class != "" {
 		fmt.Fprintf(w, "<div class=\"%s\">\n", class)
 	}

@@ -185,7 +185,7 @@ var (
 	flagSidebar    = flag.String("sidebar", "", "Include a Markdown file as the sidebar")
 	flagCSS        = flag.String("css", "", "Specify a custom CSS URL (default: GitHub-like CSS).")
 	flagTitle      = flag.String("title", "", "Specify the page title")
-	flagAnchorText = flag.String("anchor-text", ".", "Specify the anchor text")
+	flagAnchorText = flag.String("anchor-text", "", "Specify the anchor text")
 	flagTitleFile  = flag.String("title-from-file", "", "Read the HTML title from the specified `file`")
 
 	flagReadmeToIndex = flag.Bool("readme-to-index", false,

@@ -4,6 +4,7 @@ Release notes
 
 - Adjusted the style of heading anchor links to appear smaller and less intrusive
 - Anchor links next to headings are now hidden when the `-anchor-text` option is not specified
+- Fixed: CSS output bug: % was not escaped as %%, breaking @media print rule.
 
 v0.5.0
 ------

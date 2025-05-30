@@ -8,7 +8,6 @@ import (
 	"html"
 	"io"
 	"os"
-	"path/filepath"
 	"regexp"
 	"runtime"
 	"slices"
@@ -158,11 +157,6 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 		fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
 	}
 	return err
-}
-
-func withoutExt(path string) string {
-	bodyLen := len(path) - len(filepath.Ext(path))
-	return path[:bodyLen]
 }
 
 func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer) error {

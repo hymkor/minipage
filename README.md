@@ -1,5 +1,8 @@
 # minipage - Minimal Static Page Generator
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/hymkor/minipage.svg)](https://pkg.go.dev/github.com/hymkor/minipage)
+[![Go Test](https://github.com/hymkor/minipage/actions/workflows/go.yml/badge.svg)](https://github.com/hymkor/minipage/actions/workflows/go.yml)
+
 **minipage** is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, **minipage** is for you.
 
 If you'd like to use **GitHub Pages** but find existing static site generators too complex or heavy, **minipage** is a lightweight alternative that gets the job done.

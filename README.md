@@ -92,3 +92,11 @@ If you value:
 
 - [English](release_note.md)
 - [Japanese](release_note_ja.md)
+
+## Author
+
+[hymkor (HAYAMA Kaoru)](https://github.com/hymkor)
+
+## License
+
+MIT License

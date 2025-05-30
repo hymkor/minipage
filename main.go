@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"runtime"
+	"slices"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark-meta"
@@ -109,18 +110,6 @@ var (
 	rxAnchor2 = regexp.MustCompile(`(?m)^(\[.*?\]:\s+)(.*?)\.md\s*$`)
 )
 
-func concat(srcs ...[]byte) []byte {
-	caps := 0
-	for _, s := range srcs {
-		caps += len(s)
-	}
-	r := make([]byte, 0, caps)
-	for _, s := range srcs {
-		r = append(r, s...)
-	}
-	return r
-}
-
 func readFileOrStdin(path string) ([]byte, error) {
 	if path == "-" {
 		return io.ReadAll(os.Stdin)
@@ -137,7 +126,7 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 		for _, f := range M.linkRewriters {
 			url = f(url)
 		}
-		return concat(s[1], url, []byte(".html)"))
+		return slices.Concat(s[1], url, []byte(".html)"))
 	})
 	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor2, source, func(s [][]byte) []byte {
 		url := s[2]
@@ -147,7 +136,7 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 		for _, f := range M.linkRewriters {
 			url = f(url)
 		}
-		return concat(s[1], url, []byte(".html"))
+		return slices.Concat(s[1], url, []byte(".html"))
 	})
 	return source
 }

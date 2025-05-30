@@ -77,6 +77,7 @@ The website for [nyagos](https://nyaos.org/nyagos), a command-line shell for Win
 
 - **Markdown to HTML Conversion:** Powered by [goldmark](https://github.com/yuin/goldmark), a CommonMark-compliant Markdown parser written in Go that is easy to extend and well-structured.
 - **GitHub-like CSS:** Uses [github-markdown-css](https://github.com/sindresorhus/github-markdown-css), a minimal CSS file that replicates the GitHub Markdown style.
+- **Anchor URL Rewriting:** In relative anchor URLs, file extensions `.md` are automatically rewritten to `.html`. This allows links between Markdown files to remain functional after conversion.
 
 ## Why minipage?
 

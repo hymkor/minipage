@@ -47,7 +47,17 @@ const htmlHeader = `<style type="text/css"><!--
 		div.sidebar,div.footer{ display:none }
 		div.main{ width:100% }
 	}
-
+	a.permalink{
+		font-size: 0.75em;
+		vertical-align: super;
+		text-decoration: none;
+		margin-left: 0.3em;
+		color: #888;
+	}
+	a.permalink:hover{
+		color: #000;
+		text-decoration: underline;
+	}
 // -->
 </style>`
 
@@ -56,6 +66,15 @@ const htmlFooter = `</body></html>`
 type Markdown struct {
 	goldmark.Markdown
 	urlFilter []func([]byte) []byte
+}
+
+type customTexter []byte
+
+func (c customTexter) AnchorText(h *anchor.HeaderInfo) []byte {
+	if h.Level == 1 {
+		return nil
+	}
+	return []byte(c)
 }
 
 func New(anchorText string) *Markdown {
@@ -72,8 +91,8 @@ func New(anchorText string) *Markdown {
 	}
 	if anchorText != "" {
 		ext = append(ext, &anchor.Extender{
-			Texter:     anchor.Text(anchorText),
-			Attributer: anchor.Attributes{}})
+			Texter:     customTexter(anchorText),
+			Attributer: anchor.Attributes{"class": "permalink"}})
 	}
 	options := []goldmark.Option{
 		goldmark.WithParserOptions(

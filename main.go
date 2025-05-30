@@ -26,42 +26,8 @@ import (
 //go:embed github.css
 var gitHubCss string
 
-const htmlHeader = `<style type="text/css"><!--
-%s
-	.markdown-body {
-		box-sizing: border-box;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
-	body{
-		display:flex;
-		overflow-y: scroll;
-	}
-	@media screen{
-		div.sidebar{ width:30%% }
-		div.main{ width:70%% }
-	}
-
-	@media print{
-		div.sidebar,div.footer{ display:none }
-		div.main{ width:100%% }
-	}
-	a.permalink{
-		font-size: 0.75em;
-		vertical-align: super;
-		text-decoration: none;
-		margin-left: 0.3em;
-		color: #888;
-	}
-	a.permalink:hover{
-		color: #000;
-		text-decoration: underline;
-	}
-// -->
-</style>`
-
-const htmlFooter = `</body></html>`
+//go:embed our.css
+var ourCss string
 
 type Markdown struct {
 	goldmark.Markdown
@@ -167,7 +133,10 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 	if css != "" {
 		fmt.Fprintf(w, "<link rel=\"stylesheet\" href=\"%s\" />\n", css)
 	} else {
-		fmt.Fprintf(w, htmlHeader, gitHubCss)
+		io.WriteString(w, "<style type=\"text/css\"><!--\n")
+		io.WriteString(w, gitHubCss)
+		io.WriteString(w, ourCss)
+		io.WriteString(w, "\n// -->\n</style>\n")
 	}
 	fmt.Fprintln(w, "</head><body>")
 
@@ -181,7 +150,7 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 	if err := M.makePage(sidebar, "sidebar markdown-body", w); err != nil {
 		return err
 	}
-	fmt.Fprintln(w, htmlFooter)
+	fmt.Fprintln(w, `</body></html>`)
 	return nil
 }
 

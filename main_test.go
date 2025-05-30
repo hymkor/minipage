@@ -5,6 +5,28 @@ import (
 	"testing"
 )
 
+func TestRewriteLinks1(t *testing.T) {
+	M := New("")
+
+	result := M.rewriteLinks([]byte("[README_ja](./README_ja.md)"))
+	expect := []byte("[README_ja](./README_ja.html)")
+
+	if !bytes.Equal(result, expect) {
+		t.Fatalf("expect %v, but %v", string(expect), string(result))
+	}
+}
+
+func TestRewriteLinks2(t *testing.T) {
+	M := New("")
+
+	result := M.rewriteLinks([]byte("[README_ja]: ./README_ja.md"))
+	expect := []byte("[README_ja]: ./README_ja.html")
+
+	if !bytes.Equal(result, expect) {
+		t.Fatalf("expect %v, but %v", string(expect), string(result))
+	}
+}
+
 func TestEnableReadmeToIndex1(t *testing.T) {
 	M := New("#")
 	M.EnableReadmeToIndex()

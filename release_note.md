@@ -1,6 +1,8 @@
 Release notes
 =============
 
+- Treat `-` as stdin
+
 v0.4.0
 ------
 May 7, 2025

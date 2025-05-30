@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-<title>minipage - Minimal Static Page Generator</title>
+<title>Release Notes(ja)</title>
 <style type="text/css"><!--
 /* light */
 .markdown-body {
@@ -1130,75 +1130,34 @@
 // -->
 </style></head><body>
 <div class="main markdown-body">
-<h1 id="minipage---minimal-static-page-generator">minipage - Minimal Static Page Generator <a href="#minipage---minimal-static-page-generator">.</a></h1>
-<p><strong>minipage</strong> is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, <strong>minipage</strong> is for you.</p>
-<p>If you'd like to use <strong>GitHub Pages</strong> but find existing static site generators too complex or heavy, <strong>minipage</strong> is a lightweight alternative that gets the job done.</p>
-<p>With <strong>minipage</strong>, you can render Markdown into clean, GitHub-like HTML without sidebars, banners, or other distractions. It generates one page at a time, giving you full control over your site's structure using tools like <code>make</code>.</p>
-<h2 id="features">Features <a href="#features">.</a></h2>
+<h1 id="release-notes">Release notes <a href="#release-notes">.</a></h1>
+<p><a href="./release_note.html">English</a> / <strong>Japanese</strong> / <a href="./index.html">Top</a></p>
 <ul>
-<li><strong>Fast and Simple:</strong> Converts one or more Markdown files into a single HTML page in one command.</li>
-<li><strong>Customizable Layout:</strong> Optionally include a header, footer, and sidebar for layout consistency.</li>
-<li><strong>Lightweight by Design:</strong> No configuration files — just straightforward options.</li>
-<li><strong>Flexible Workflow:</strong> Designed to be called from <code>make</code> or similar build tools to construct full websites.</li>
+<li>ファイル名として与えられた <code>-</code> は標準入力として扱うようにした。</li>
+<li><strong>追加</strong>: <code>-readme-to-index</code> オプションを追加した。相対リンク中の <code>README</code> で始まるファイル名（例：<code>README_ja</code>）を <code>index</code> に変換する（例：<code>index_ja</code>）。拡張子 <code>.md → .html</code> の変換や、相対 URL の処理はこのオプションに関係なく常に行われる。</li>
 </ul>
-<h2 id="installation">Installation <a href="#installation">.</a></h2>
-<h3 id="from-github-releases">From GitHub Releases <a href="#from-github-releases">.</a></h3>
-<p>Download the appropriate <code>.zip</code> file for your OS and architecture from the <a href="https://github.com/hymkor/minipage/releases">releases page</a>. Extract the archive and place the <code>minipage</code> executable in a directory listed in your <code>PATH</code>.</p>
-<h3 id="using-go-install-any-os">Using <code>go install</code> (any OS) <a href="#using-go-install-any-os">.</a></h3>
-<p>To install <strong>minipage</strong> using Go, run the following command:</p>
-<pre><code>go install github.com/hymkor/minipage@latest
-</code></pre>
-<h3 id="using-scoop-windows">Using Scoop (Windows) <a href="#using-scoop-windows">.</a></h3>
-<p>For Windows users, you can install <strong>minipage</strong> via <a href="https://scoop.sh/">Scoop</a>:</p>
-<pre><code>scoop install https://raw.githubusercontent.com/hymkor/minipage/master/minipage.json
-</code></pre>
-<p>Alternatively, add the <code>hymkor</code> bucket and install:</p>
-<pre><code>scoop bucket add hymkor https://github.com/hymkor/scoop-bucket
-scoop install hymkor/minipage
-</code></pre>
-<h2 id="usage">Usage <a href="#usage">.</a></h2>
-<pre><code>minipage {options} FILE1.md [FILE2.md ...] &gt; OUTPUT.html
-</code></pre>
-<h3 id="options">Options <a href="#options">.</a></h3>
+<h2 id="v040">v0.4.0 <a href="#v040">.</a></h2>
+<p>May 7, 2025</p>
 <ul>
-<li><code>-sidebar SIDEBAR.MD</code> — Include a Markdown file as the sidebar.</li>
-<li><code>-css CSSURL</code> — Specify a custom CSS URL (default: GitHub-like CSS).</li>
-<li><code>-title TITLE</code> — Specify the page title.</li>
-<li><code>-anchor-text string</code> — Specify the anchor text (default &quot;.&quot;).</li>
-<li><code>-title-from-file file</code> - Read the HTML title from the specified file</li>
-<li><code>-readme-to-index</code> - Replace file names starting with 'README' with 'index' in relative anchor URLs</li>
+<li>生成されるHTMLに <code>&lt;!DOCTYPE html&gt;</code> を挿入するようにした</li>
+<li>指定したファイルの中味を HTML のタイトルとして使うオプション <code>-title-from-file</code> を実装</li>
 </ul>
-<h2 id="example">Example <a href="#example">.</a></h2>
-<p>To build a simple page with multiple sections:</p>
-<pre><code>minipage header.md content.md footer.md &gt; index.html
-</code></pre>
-<p>Combine it with <code>make</code> for efficient site generation:</p>
-<pre><code class="language-makefile">all:
-	minipage header.md index.md footer.md &gt; index.html
-	minipage header.md about.md footer.md &gt; about.html
-</code></pre>
-<h2 id="example-use-case">Example Use Case <a href="#example-use-case">.</a></h2>
-<p>The website for <a href="https://nyaos.org/nyagos">nyagos</a>, a command-line shell for Windows, is built using <strong>minipage</strong>.</p>
-<h2 id="technical-details">Technical Details <a href="#technical-details">.</a></h2>
+<h2 id="v030">v0.3.0 <a href="#v030">.</a></h2>
+<p>Mar 22, 2025</p>
 <ul>
-<li><strong>Markdown to HTML Conversion:</strong> Powered by <a href="https://github.com/yuin/goldmark">goldmark</a>, a CommonMark-compliant Markdown parser written in Go that is easy to extend and well-structured.</li>
-<li><strong>GitHub-like CSS:</strong> Uses <a href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a>, a minimal CSS file that replicates the GitHub Markdown style.</li>
-<li><strong>Anchor URL Rewriting:</strong> In relative anchor URLs, file extensions <code>.md</code> are automatically rewritten to <code>.html</code>. This allows links between Markdown files to remain functional after conversion.</li>
+<li><code>-header</code>, <code>-footer</code> オプションを削除。markdownファイルはコマンドラインで直接指定するようにした。</li>
 </ul>
-<h2 id="why-minipage">Why minipage? <a href="#why-minipage">.</a></h2>
-<p>If you value:</p>
-<p>✅ Clean, distraction-free Markdown rendering<br>
-✅ Straightforward usage without complex configurations<br>
-✅ Simple workflows that integrate with existing tools</p>
-<p><strong>minipage</strong> is designed for you.</p>
-<h2 id="release-notes">Release notes <a href="#release-notes">.</a></h2>
+<pre><code>minipage HEADER.md BODY.md FOOTER.md &gt; OUTPUT.html
+</code></pre>
+<h2 id="v020">v0.2.0 <a href="#v020">.</a></h2>
+<p>Mar 21, 2025</p>
 <ul>
-<li><a href="release_note.html">English</a></li>
-<li><a href="release_note_ja.html">Japanese</a></li>
+<li>オプション <code>-anchor-text STRING</code> を追加</li>
 </ul>
-<h2 id="author">Author <a href="#author">.</a></h2>
-<p><a href="https://github.com/hymkor">hymkor (HAYAMA Kaoru)</a></p>
-<h2 id="license">License <a href="#license">.</a></h2>
-<p>MIT License</p>
+<h2 id="v010">v0.1.0 <a href="#v010">.</a></h2>
+<p>Mar 20, 2025</p>
+<ul>
+<li>初版</li>
+</ul>
 </div><!-- "main" -->
 </body></html>

@@ -52,6 +52,7 @@ minipage {options} FILE1.md [FILE2.md ...] > OUTPUT.html
 - `-title TITLE` — Specify the page title.
 - `-anchor-text string` — Specify the anchor text (default ".").
 - `-title-from-file file` - Read the HTML title from the specified file
+- `-readme-to-index` - Replace file names starting with 'README' with 'index' in relative anchor URLs
 
 ## Example
 

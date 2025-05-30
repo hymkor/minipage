@@ -1,6 +1,10 @@
 Release notes
 =============
 
+v0.5.0
+------
+May 30, 2025
+
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
 - ファイル名として与えられた `-` は標準入力として扱うようにした。

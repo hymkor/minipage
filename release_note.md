@@ -1,6 +1,10 @@
 Release notes
 =============
 
+v0.5.0
+------
+May 30, 2025
+
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
 - Treat `-` as stdin

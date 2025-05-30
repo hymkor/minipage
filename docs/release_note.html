@@ -1106,58 +1106,74 @@
   min-height: 52px;
 }
 
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+body{
+  display:flex;
+  overflow-y: scroll;
+}
+@media screen{
+  div.sidebar{ width:30% }
+  div.main{ width:70% }
+}
 
-	.markdown-body {
-		box-sizing: border-box;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
-	body{
-		display:flex;
-		overflow-y: scroll;
-	}
-	@media screen{
-		div.sidebar{ width:30% }
-		div.main{ width:70% }
-	}
-
-	@media print{
-		div.sidebar,div.footer{ display:none }
-		div.main{ width:100%!}(MISSING)
-	}
+@media print{
+  div.sidebar,div.footer{ display:none }
+  div.main{ width:100% }
+}
+a.permalink{
+  font-size: 0.75em;
+  vertical-align: super;
+  text-decoration: none;
+  margin-left: 0.3em;
+  color: #888;
+}
+a.permalink:hover{
+  color: #000;
+  text-decoration: underline;
+}
 
 // -->
-</style></head><body>
+</style>
+</head><body>
 <div class="main markdown-body">
-<h1 id="release-notes">Release notes <a href="#release-notes">.</a></h1>
-<h2 id="v050">v0.5.0 <a href="#v050">.</a></h2>
-<p>May 30, 2025</p>
+<h1 id="release-notes">Release notes</h1>
 <p><strong>English</strong> / <a href="./release_note_ja.html">Japanese</a> / <a href="./index.html">Top</a></p>
+<ul>
+<li>Adjusted the style of heading anchor links to appear smaller and less intrusive</li>
+<li>Anchor links next to headings are now hidden when the <code>-anchor-text</code> option is not specified</li>
+<li>Fixed: CSS output bug: % was not escaped as %%, breaking @media print rule.</li>
+</ul>
+<h2 id="v050">v0.5.0 <a class="permalink" href="#v050">#</a></h2>
+<p>May 30, 2025</p>
 <ul>
 <li>Treat <code>-</code> as stdin</li>
 <li><strong>Added</strong> the <code>-readme-to-index</code> option, which rewrites file names starting with <code>README</code> to start with <code>index</code> in relative anchor URLs.<br>
 This is useful when generating links that point to <code>index.html</code> instead of <code>README.html</code> (e.g., <code>README_ja.md</code> → <code>index_ja.html</code>).</li>
 </ul>
-<h2 id="v040">v0.4.0 <a href="#v040">.</a></h2>
+<h2 id="v040">v0.4.0 <a class="permalink" href="#v040">#</a></h2>
 <p>May 7, 2025</p>
 <ul>
 <li>Insert <code>&lt;!DOCTYPE html&gt;</code> into generated HTML</li>
 <li>Implement <code>-title-from-file</code> option to use the contents of a specified file as the HTML title</li>
 </ul>
-<h2 id="v030">v0.3.0 <a href="#v030">.</a></h2>
+<h2 id="v030">v0.3.0 <a class="permalink" href="#v030">#</a></h2>
 <p>Mar 22, 2025</p>
 <ul>
 <li>Removed <code>-header</code> and <code>-footer</code> options. Markdown files are now specified directly in the command:</li>
 </ul>
 <pre><code>minipage HEADER.md BODY.md FOOTER.md &gt; OUTPUT.html
 </code></pre>
-<h2 id="v020">v0.2.0 <a href="#v020">.</a></h2>
+<h2 id="v020">v0.2.0 <a class="permalink" href="#v020">#</a></h2>
 <p>Mar 21, 2025</p>
 <ul>
 <li>Added the option <code>-anchor-text STRING</code></li>
 </ul>
-<h2 id="v010">v0.1.0 <a href="#v010">.</a></h2>
+<h2 id="v010">v0.1.0 <a class="permalink" href="#v010">#</a></h2>
 <p>Mar 20, 2025</p>
 <ul>
 <li>Initial release</li>

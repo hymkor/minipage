@@ -19,6 +19,8 @@ import (
 	// goldmarkHtml "github.com/yuin/goldmark/renderer/html"
 
 	"go.abhg.dev/goldmark/anchor"
+
+	"github.com/hymkor/exregexp-go"
 )
 
 //go:embed github.css
@@ -53,6 +55,7 @@ const htmlFooter = `</body></html>`
 
 type Markdown struct {
 	goldmark.Markdown
+	urlFilter []func([]byte) []byte
 }
 
 func New(anchorText string) *Markdown {
@@ -79,22 +82,20 @@ func New(anchorText string) *Markdown {
 }
 
 var (
-	rxAnchor1 = regexp.MustCompile(`(\[.*?\]\(.*?\.)md\)`)
-	rxAnchor2 = regexp.MustCompile(`(?m)^\[.*?\]:\s+.*?\.md\s*$`)
+	rxAnchor1 = regexp.MustCompile(`(\[.*?\]\()(.*?)\.md\)`)
+	rxAnchor2 = regexp.MustCompile(`(?m)^(\[.*?\]:\s+)(.*?)\.md\s*$`)
 )
 
-func concat(a []byte, b []byte) []byte {
-	r := make([]byte, 0, len(a)+len(b))
-	r = append(r, a...)
-	r = append(r, b...)
-	return r
-}
-
-func chomp(s []byte) []byte {
-	for len(s) > 0 && bytes.IndexByte([]byte{'\r', '\n', ' '}, s[len(s)-1]) >= 0 {
-		s = s[:len(s)-1]
+func concat(srcs ...[]byte) []byte {
+	caps := 0
+	for _, s := range srcs {
+		caps += len(s)
 	}
-	return s
+	r := make([]byte, 0, caps)
+	for _, s := range srcs {
+		r = append(r, s...)
+	}
+	return r
 }
 
 func (M *Markdown) makePage(path, class string, w io.Writer) error {
@@ -113,18 +114,25 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 		return err
 	}
 
-	source = rxAnchor1.ReplaceAllFunc(source, func(s []byte) []byte {
-		if len(s) < len("md)") {
-			return s
+	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor1, source, func(s [][]byte) []byte {
+		url := s[2]
+		if bytes.HasPrefix(url, []byte("http")) {
+			return s[0]
 		}
-		return concat(s[:len(s)-3], []byte("html)"))
+		for _, f := range M.urlFilter {
+			url = f(url)
+		}
+		return concat(s[1], url, []byte(".html)"))
 	})
-	source = rxAnchor2.ReplaceAllFunc(source, func(s []byte) []byte {
-		s = chomp(s)
-		if len(s) < len("md") {
-			return s
+	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor2, source, func(s [][]byte) []byte {
+		url := s[2]
+		if bytes.HasPrefix(url, []byte("http")) {
+			return s[0]
 		}
-		return concat(s[:len(s)-2], []byte("html"))
+		for _, f := range M.urlFilter {
+			url = f(url)
+		}
+		return concat(s[1], url, []byte(".html"))
 	})
 	// println(string(source))
 
@@ -175,6 +183,9 @@ var (
 	flagTitle      = flag.String("title", "", "Specify the page title")
 	flagAnchorText = flag.String("anchor-text", ".", "Specify the anchor text")
 	flagTitleFile  = flag.String("title-from-file", "", "Read the HTML title from the specified `file`")
+
+	flagReadmeToIndex = flag.Bool("readme-to-index", false,
+		"Replace file names starting with 'README' with 'index' in relative anchor URLs")
 )
 
 func mains(args []string) error {
@@ -184,6 +195,11 @@ func mains(args []string) error {
 			version, runtime.GOOS, runtime.GOARCH, runtime.Version())
 		flag.Usage()
 		return nil
+	}
+	if *flagReadmeToIndex {
+		m.urlFilter = append(m.urlFilter, func(s []byte) []byte {
+			return bytes.ReplaceAll(s, []byte("README"), []byte("index"))
+		})
 	}
 	title := *flagTitle
 	if title == "" {

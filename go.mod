@@ -8,4 +8,7 @@ require (
 	go.abhg.dev/goldmark/anchor v0.2.0
 )
 
-require gopkg.in/yaml.v2 v2.4.0 // indirect
+require (
+	github.com/hymkor/exregexp-go v0.2.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
+)

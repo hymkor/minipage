@@ -1,3 +1,8 @@
+Release notes
+=============
+
+[English](./release_note.md) / **Japanese** / [Top](./README.md)
+
 - ファイル名として与えられた `-` は標準入力として扱うようにした。
 - **追加**: `-readme-to-index` オプションを追加した。相対リンク中の `README` で始まるファイル名（例：`README_ja`）を `index` に変換する（例：`index_ja`）。拡張子 `.md → .html` の変換や、相対 URL の処理はこのオプションに関係なく常に行われる。
 

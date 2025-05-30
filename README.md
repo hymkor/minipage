@@ -87,3 +87,8 @@ If you value:
 ✅ Simple workflows that integrate with existing tools  
 
 **minipage** is designed for you.
+
+## Release notes
+
+- [English](release_note.md)
+- [Japanese](release_note_ja.md)

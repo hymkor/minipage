@@ -1,6 +1,8 @@
 Release notes
 =============
 
+**English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
+
 - Treat `-` as stdin
 - **Added** the `-readme-to-index` option, which rewrites file names starting with `README` to start with `index` in relative anchor URLs.  
     This is useful when generating links that point to `index.html` instead of `README.html` (e.g., `README_ja.md` → `index_ja.html`).

@@ -45,7 +45,7 @@ const htmlHeader = `<style type="text/css"><!--
 
 	@media print{
 		div.sidebar,div.footer{ display:none }
-		div.main{ width:100% }
+		div.main{ width:100%% }
 	}
 	a.permalink{
 		font-size: 0.75em;

@@ -29,6 +29,8 @@ var gitHubCss string
 //go:embed our.css
 var ourCss string
 
+// Markdown is an object that converts Markdown documents to HTML.
+// It supports optional anchor links next to headings and URL rewriting for links pointing to README.
 type Markdown struct {
 	goldmark.Markdown
 	linkRewriters []func([]byte) []byte
@@ -43,6 +45,9 @@ func (c customTexter) AnchorText(h *anchor.HeaderInfo) []byte {
 	return []byte(c)
 }
 
+// New creates a new Markdown instance.
+// The anchorText argument specifies the text to be used for anchor links next to headings (e.g., "#").
+// If an empty string is given, anchor links will not be generated.
 func New(anchorText string) *Markdown {
 	ext := []goldmark.Extender{
 		extension.Table,
@@ -125,6 +130,11 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	return err
 }
 
+// Make generates an HTML page from the given Markdown file paths.
+// The sidebar argument specifies the path to a sidebar Markdown file.
+// The bodies argument is a list of paths to main content Markdown files.
+// The title argument specifies the HTML <title> element content.
+// The generated HTML is written to the writer w.
 func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer) error {
 	fmt.Fprintln(w, `<!DOCTYPE html><html><head>`)
 	if title != "" {
@@ -154,6 +164,7 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 	return nil
 }
 
+// EnableReadmeToIndex enables URL rewriting so that links ending with "README" are rewritten to "index".
 func (M *Markdown) EnableReadmeToIndex() {
 	M.linkRewriters = append(M.linkRewriters, func(s []byte) []byte {
 		return bytes.ReplaceAll(s, []byte("README"), []byte("index"))

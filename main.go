@@ -101,7 +101,14 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	if path == "" {
 		return nil
 	}
-	source, err := os.ReadFile(path)
+	var source []byte
+	var err error
+
+	if path == "-" {
+		source, err = io.ReadAll(os.Stdin)
+	} else {
+		source, err = os.ReadFile(path)
+	}
 	if err != nil {
 		return err
 	}

@@ -39,6 +39,8 @@ release:
 	gh release create -d --notes "" -t $(VERSION) $(VERSION) $(wildcard $(NAME)-$(VERSION)-*.zip)
 
 docs:
-	"./minipage" -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
+	"./minipage" -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
+	"./minipage" -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
+	"./minipage" -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
 
 .PHONY: all test dist _dist clean manifest release docs

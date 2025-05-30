@@ -59,22 +59,26 @@ type Markdown struct {
 }
 
 func New(anchorText string) *Markdown {
+	ext := []goldmark.Extender{
+		extension.Table,
+		extension.NewLinkify(
+			extension.WithLinkifyAllowedProtocols([][]byte{
+				[]byte("http:"),
+				[]byte("https:"),
+			})),
+		extension.TaskList,
+		extension.Footnote,
+		meta.New(meta.WithTable()),
+	}
+	if anchorText != "" {
+		ext = append(ext, &anchor.Extender{
+			Texter:     anchor.Text(anchorText),
+			Attributer: anchor.Attributes{}})
+	}
 	options := []goldmark.Option{
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID()),
-		goldmark.WithExtensions(
-			extension.Table,
-			extension.NewLinkify(
-				extension.WithLinkifyAllowedProtocols([][]byte{
-					[]byte("http:"),
-					[]byte("https:"),
-				})),
-			extension.TaskList,
-			extension.Footnote,
-			meta.New(meta.WithTable()),
-			&anchor.Extender{
-				Texter:     anchor.Text(anchorText),
-				Attributer: anchor.Attributes{}}),
+		goldmark.WithExtensions(ext...),
 	}
 	return &Markdown{
 		Markdown: goldmark.New(options...),

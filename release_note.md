@@ -2,6 +2,8 @@ Release notes
 =============
 
 - Treat `-` as stdin
+- **Added** the `-readme-to-index` option, which rewrites file names starting with `README` to start with `index` in relative anchor URLs.  
+    This is useful when generating links that point to `index.html` instead of `README.html` (e.g., `README_ja.md` → `index_ja.html`).
 
 v0.4.0
 ------
@@ -31,4 +33,3 @@ v0.1.0
 Mar 20, 2025
 
 - Initial release
-

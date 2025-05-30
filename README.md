@@ -74,6 +74,19 @@ all:
 
 The website for [nyagos](https://nyaos.org/nyagos), a command-line shell for Windows, is built using **minipage**.
 
+You can also use minipage to generate GitHub Pages content for its own project site:
+
+```Makefile
+docs:
+	"./minipage" -anchor-text "#" -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
+	"./minipage" -anchor-text "#" -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
+	"./minipage" -anchor-text "#" -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
+
+.PHONY: all test dist _dist clean manifest release docs
+```
+
+This example generates clean HTML pages from Markdown source files for use with GitHub Pages.
+
 ## Technical Details
 
 - **Markdown to HTML Conversion:** Powered by [goldmark](https://github.com/yuin/goldmark), a CommonMark-compliant Markdown parser written in Go that is easy to extend and well-structured.

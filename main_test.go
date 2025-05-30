@@ -1,52 +1,28 @@
 package main
 
 import (
-	"bytes"
 	"testing"
 )
 
-func TestRewriteLinks1(t *testing.T) {
-	M := New("")
+func testRewrite(t *testing.T, M *Markdown, source, expect string) {
+	t.Helper()
 
-	result := M.rewriteLinks([]byte("[README_ja](./README_ja.md)"))
-	expect := []byte("[README_ja](./README_ja.html)")
+	result := string(M.rewriteLinks([]byte(source)))
 
-	if !bytes.Equal(result, expect) {
-		t.Fatalf("expect %v, but %v", string(expect), string(result))
+	if result != expect {
+		t.Fatalf("expect %v, but %v", expect, result)
 	}
 }
 
-func TestRewriteLinks2(t *testing.T) {
-	M := New("")
-
-	result := M.rewriteLinks([]byte("[README_ja]: ./README_ja.md"))
-	expect := []byte("[README_ja]: ./README_ja.html")
-
-	if !bytes.Equal(result, expect) {
-		t.Fatalf("expect %v, but %v", string(expect), string(result))
-	}
+func TestRewriteLinks(t *testing.T) {
+	M := &Markdown{}
+	testRewrite(t, M, "[README_ja](./README_ja.md)", "[README_ja](./README_ja.html)")
+	testRewrite(t, M, "[README_ja]: ./README_ja.md", "[README_ja]: ./README_ja.html")
 }
 
-func TestEnableReadmeToIndex1(t *testing.T) {
-	M := New("#")
+func TestEnableReadmeToIndex(t *testing.T) {
+	M := &Markdown{}
 	M.EnableReadmeToIndex()
-
-	result := M.rewriteLinks([]byte("[README_ja](./README_ja.md)"))
-	expect := []byte("[README_ja](./index_ja.html)")
-
-	if !bytes.Equal(result, expect) {
-		t.Fatalf("expect %v, but %v", string(expect), string(result))
-	}
-}
-
-func TestEnableReadmeToIndex2(t *testing.T) {
-	M := New("#")
-	M.EnableReadmeToIndex()
-
-	result := M.rewriteLinks([]byte("[README_ja]: ./README_ja.md"))
-	expect := []byte("[README_ja]: ./index_ja.html")
-
-	if !bytes.Equal(result, expect) {
-		t.Fatalf("expect %v, but %v", string(expect), string(result))
-	}
+	testRewrite(t, M, "[README_ja](./README_ja.md)", "[README_ja](./index_ja.html)")
+	testRewrite(t, M, "[README_ja]: ./README_ja.md", "[README_ja]: ./index_ja.html")
 }

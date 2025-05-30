@@ -231,19 +231,11 @@ func mains(args []string) error {
 		m.EnableReadmeToIndex()
 	}
 	title := *flagTitle
-	if title == "" {
-		if *flagTitleFile == "-" {
-			if b, err := io.ReadAll(os.Stdin); err != nil {
-				return err
-			} else {
-				title = string(b)
-			}
-		} else if *flagTitleFile != "" {
-			if b, err := os.ReadFile(*flagTitleFile); err != nil {
-				return err
-			} else {
-				title = string(b)
-			}
+	if title == "" && *flagTitleFile != "" {
+		if b, err := readFileOrStdin(*flagTitleFile); err != nil {
+			return err
+		} else {
+			title = string(b)
 		}
 	}
 	return m.Make(args, *flagSidebar, *flagCSS, title, os.Stdout)

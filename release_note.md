@@ -1,11 +1,13 @@
 Release notes
 =============
+**English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
+
+- Adjusted the style of heading anchor links to appear smaller and less intrusive
+- Anchor links next to headings are now hidden when the `-anchor-text` option is not specified
 
 v0.5.0
 ------
 May 30, 2025
-
-**English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
 - Treat `-` as stdin
 - **Added** the `-readme-to-index` option, which rewrites file names starting with `README` to start with `index` in relative anchor URLs.  

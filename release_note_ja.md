@@ -2,6 +2,9 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+- XHTML形式で出力するようにした
+- `<style>..</style>`タグの中身を`<!--..-->` で囲まないようにした
+
 v0.6.0
 ------
 May 31, 2025

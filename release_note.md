@@ -2,6 +2,10 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.6.0
+------
+May 31, 2025
+
 - Adjusted the style of heading anchor links to appear smaller and less intrusive
 - Anchor links next to headings are now hidden when the `-anchor-text` option is not specified
 - Fixed: CSS output bug: % was not escaped as %%, breaking @media print rule.

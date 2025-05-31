@@ -2,6 +2,10 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.7.0
+------
+Sep 17, 2025
+
 - Changed output format to XHTML
 - Stopped wrapping the contents of `<style>..</style>` tags with `<!--..-->`
 

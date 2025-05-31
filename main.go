@@ -143,10 +143,10 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 	if css != "" {
 		fmt.Fprintf(w, "<link rel=\"stylesheet\" href=\"%s\" />\n", css)
 	} else {
-		io.WriteString(w, "<style type=\"text/css\"><!--\n")
+		io.WriteString(w, "<style type=\"text/css\">\n")
 		io.WriteString(w, gitHubCss)
 		io.WriteString(w, ourCss)
-		io.WriteString(w, "\n// -->\n</style>\n")
+		io.WriteString(w, "\n</style>\n")
 	}
 	fmt.Fprintln(w, "</head><body>")
 

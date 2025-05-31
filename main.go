@@ -16,7 +16,7 @@ import (
 	"github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
-	// goldmarkHtml "github.com/yuin/goldmark/renderer/html"
+	ghtml "github.com/yuin/goldmark/renderer/html"
 
 	"go.abhg.dev/goldmark/anchor"
 
@@ -69,6 +69,9 @@ func New(anchorText string) *Markdown {
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID()),
 		goldmark.WithExtensions(ext...),
+		goldmark.WithRendererOptions(
+			ghtml.WithXHTML(),
+		),
 	}
 	return &Markdown{
 		Markdown: goldmark.New(options...),

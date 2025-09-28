@@ -2,6 +2,10 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.8.0
+------
+Sep 28, 2025
+
 - Fix the issue where IDs were not compatible with GitHub when headers contained non-ASCII characters.
 
 v0.7.0

@@ -2,6 +2,8 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+- 見出しが日本語だった時、ID が GitHub 非互換になっていた問題を修正
+
 v0.7.0
 ------
 Sep 17, 2025

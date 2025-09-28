@@ -21,6 +21,7 @@ import (
 	"go.abhg.dev/goldmark/anchor"
 
 	"github.com/hymkor/exregexp-go"
+	"github.com/hymkor/xnhttpd/idgen"
 )
 
 //go:embed github.css
@@ -126,7 +127,8 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 	if class != "" {
 		fmt.Fprintf(w, "<div class=\"%s\">\n", class)
 	}
-	err = M.Convert(source, w)
+	mdCtx := parser.NewContext(parser.WithIDs(idgen.New()))
+	err = M.Convert(source, w, parser.WithContext(mdCtx))
 	if class != "" {
 		fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
 	}

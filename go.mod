@@ -4,7 +4,7 @@ go 1.24.1
 
 require (
 	github.com/hymkor/exregexp-go v0.2.0
-	github.com/hymkor/xnhttpd v0.10.0
+	github.com/hymkor/goldmark-mb-headingids v0.0.0-20250929070502-a3ed1c4deb18
 	github.com/yuin/goldmark v1.7.8
 	github.com/yuin/goldmark-meta v1.1.0
 	go.abhg.dev/goldmark/anchor v0.2.0

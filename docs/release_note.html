@@ -1142,6 +1142,21 @@ a.permalink:hover{
 <div class="main markdown-body">
 <h1 id="release-notes">Release notes</h1>
 <p><strong>English</strong> / <a href="./release_note_ja.html">Japanese</a> / <a href="./index.html">Top</a></p>
+<h1 id="v081">v0.8.1</h1>
+<p>Sep 29, 2025</p>
+<ul>
+<li>Use <code>hymkor/goldmark-mb-headingids</code> instead of <code>hymkor/xnhttpd/idgen</code>
+<ul>
+<li>Fix the issue where non-alphanumeric single-byte characters in headings were included in IDs, making them incompatible with GitHub.</li>
+<li>Fix the issue where, when a heading contained no characters usable for an ID, the placeholder <code>xheading</code> was used instead of <code>heading</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="v080">v0.8.0 <a class="permalink" href="#v080">#</a></h2>
+<p>Sep 28, 2025</p>
+<ul>
+<li>Fix the issue where IDs were not compatible with GitHub when headers contained non-ASCII characters.</li>
+</ul>
 <h2 id="v070">v0.7.0 <a class="permalink" href="#v070">#</a></h2>
 <p>Sep 17, 2025</p>
 <ul>

@@ -1142,6 +1142,21 @@ a.permalink:hover{
 <div class="main markdown-body">
 <h1 id="release-notes">Release notes</h1>
 <p><a href="./release_note.html">English</a> / <strong>Japanese</strong> / <a href="./index.html">Top</a></p>
+<h1 id="v081">v0.8.1</h1>
+<p>Sep 29, 2025</p>
+<ul>
+<li><code>hymkor/xnhttpd/idgen</code> のかわりに <code>hymkor/goldmark-mb-headingids</code> を使用
+<ul>
+<li>見出し文字のうち、英数字ではないシングルバイト文字が ID に入っていて、GitHub 非互換になっていた問題を修正</li>
+<li>見出しに ID として使える文字が一文字もない時、<code>heading</code> ではなく、調査用に仮に設定していた<code>xheading</code> が ID として使われていた問題を修正</li>
+</ul>
+</li>
+</ul>
+<h2 id="v080">v0.8.0 <a class="permalink" href="#v080">#</a></h2>
+<p>Sep 28, 2025</p>
+<ul>
+<li>見出しが日本語だった時、ID が GitHub 非互換になっていた問題を修正</li>
+</ul>
 <h2 id="v070">v0.7.0 <a class="permalink" href="#v070">#</a></h2>
 <p>Sep 17, 2025</p>
 <ul>

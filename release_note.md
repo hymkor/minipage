@@ -2,6 +2,10 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.8.1
+======
+Sep 29, 2025
+
 - Use `hymkor/goldmark-mb-headingids` instead of `hymkor/xnhttpd/idgen`
     - Fix the issue where non-alphanumeric single-byte characters in headings were included in IDs, making them incompatible with GitHub.
     - Fix the issue where, when a heading contained no characters usable for an ID, the placeholder `xheading` was used instead of `heading`.

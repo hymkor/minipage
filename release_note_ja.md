@@ -2,6 +2,9 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+v0.8.1
+======
+Sep 29, 2025
 
 - `hymkor/xnhttpd/idgen` のかわりに `hymkor/goldmark-mb-headingids` を使用
     - 見出し文字のうち、英数字ではないシングルバイト文字が ID に入っていて、GitHub 非互換になっていた問題を修正

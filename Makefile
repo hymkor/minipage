@@ -39,8 +39,8 @@ release:
 	goawk -f latest-notes.awk release_note*.md | gh release create -d --notes-file - -t $(VERSION) $(VERSION) $(wildcard $(NAME)-$(VERSION)-*.zip)
 
 docs:
-	"./minipage" -anchor-text "#" -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
-	"./minipage" -anchor-text "#" -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
-	"./minipage" -anchor-text "#" -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
 
 .PHONY: all test dist _dist clean manifest release docs

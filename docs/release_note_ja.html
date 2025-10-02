@@ -1142,6 +1142,11 @@ a.permalink:hover{
 <div class="main markdown-body">
 <h1 id="release-notes">Release notes</h1>
 <p><a href="./release_note.html">English</a> / <strong>Japanese</strong> / <a href="./index.html">Top</a></p>
+<h1 id="v090">v0.9.0</h1>
+<p>Oct 2, 2025</p>
+<ul>
+<li>サイドバーにページ内目次を追加するオプション: <code>-outline-in-sidebar</code> を追加</li>
+</ul>
 <h1 id="v081">v0.8.1</h1>
 <p>Sep 29, 2025</p>
 <ul>
@@ -1152,52 +1157,70 @@ a.permalink:hover{
 </ul>
 </li>
 </ul>
-<h2 id="v080">v0.8.0 <a class="permalink" href="#v080">#</a></h2>
+<h2 id="v080">v0.8.0</h2>
 <p>Sep 28, 2025</p>
 <ul>
 <li>見出しが日本語だった時、ID が GitHub 非互換になっていた問題を修正</li>
 </ul>
-<h2 id="v070">v0.7.0 <a class="permalink" href="#v070">#</a></h2>
+<h2 id="v070">v0.7.0</h2>
 <p>Sep 17, 2025</p>
 <ul>
 <li>XHTML形式で出力するようにした</li>
 <li><code>&lt;style&gt;..&lt;/style&gt;</code>タグの中身を<code>&lt;!--..--&gt;</code> で囲まないようにした</li>
 </ul>
-<h2 id="v060">v0.6.0 <a class="permalink" href="#v060">#</a></h2>
+<h2 id="v060">v0.6.0</h2>
 <p>May 31, 2025</p>
 <ul>
 <li>見出しのアンカーリンクのスタイルを調整して、小さくて邪魔にならないように見えるようにした</li>
 <li><code>-anchor-text</code> オプションが指定されていないときに、見出しの横にあるアンカーリンクを隠すようにした</li>
 <li>CSSの出力不具合: <code>%</code> が <code>%%</code> とエスケープされていなかったため、@media print ルールを壊していた</li>
 </ul>
-<h2 id="v050">v0.5.0 <a class="permalink" href="#v050">#</a></h2>
+<h2 id="v050">v0.5.0</h2>
 <p>May 30, 2025</p>
 <ul>
 <li>ファイル名として与えられた <code>-</code> は標準入力として扱うようにした。</li>
 <li><strong>追加</strong>: <code>-readme-to-index</code> オプションを追加した。相対リンク中の <code>README</code> で始まるファイル名（例：<code>README_ja</code>）を <code>index</code> に変換する（例：<code>index_ja</code>）。拡張子 <code>.md → .html</code> の変換や、相対 URL の処理はこのオプションに関係なく常に行われる。</li>
 </ul>
-<h2 id="v040">v0.4.0 <a class="permalink" href="#v040">#</a></h2>
+<h2 id="v040">v0.4.0</h2>
 <p>May 7, 2025</p>
 <ul>
 <li>生成されるHTMLに <code>&lt;!DOCTYPE html&gt;</code> を挿入するようにした</li>
 <li>指定したファイルの中味を HTML のタイトルとして使うオプション <code>-title-from-file</code> を実装</li>
 </ul>
-<h2 id="v030">v0.3.0 <a class="permalink" href="#v030">#</a></h2>
+<h2 id="v030">v0.3.0</h2>
 <p>Mar 22, 2025</p>
 <ul>
 <li><code>-header</code>, <code>-footer</code> オプションを削除。markdownファイルはコマンドラインで直接指定するようにした。</li>
 </ul>
 <pre><code>minipage HEADER.md BODY.md FOOTER.md &gt; OUTPUT.html
 </code></pre>
-<h2 id="v020">v0.2.0 <a class="permalink" href="#v020">#</a></h2>
+<h2 id="v020">v0.2.0</h2>
 <p>Mar 21, 2025</p>
 <ul>
 <li>オプション <code>-anchor-text STRING</code> を追加</li>
 </ul>
-<h2 id="v010">v0.1.0 <a class="permalink" href="#v010">#</a></h2>
+<h2 id="v010">v0.1.0</h2>
 <p>Mar 20, 2025</p>
 <ul>
 <li>初版</li>
 </ul>
 </div><!-- "main" -->
+<div class="sidebar markdown-body">
+<ul>
+<li><a href="#release-notes">Release notes</a></li>
+<li><a href="#v090">v0.9.0</a></li>
+<li><a href="#v081">v0.8.1</a>
+<ul>
+<li><a href="#v080">v0.8.0</a></li>
+<li><a href="#v070">v0.7.0</a></li>
+<li><a href="#v060">v0.6.0</a></li>
+<li><a href="#v050">v0.5.0</a></li>
+<li><a href="#v040">v0.4.0</a></li>
+<li><a href="#v030">v0.3.0</a></li>
+<li><a href="#v020">v0.2.0</a></li>
+<li><a href="#v010">v0.1.0</a></li>
+</ul>
+</li>
+</ul>
+</div><!-- "sidebar" -->
 </body></html>

@@ -1142,6 +1142,11 @@ a.permalink:hover{
 <div class="main markdown-body">
 <h1 id="release-notes">Release notes</h1>
 <p><strong>English</strong> / <a href="./release_note_ja.html">Japanese</a> / <a href="./index.html">Top</a></p>
+<h1 id="v090">v0.9.0</h1>
+<p>Oct 2, 2025</p>
+<ul>
+<li>Added the option <code>-outline-in-sidebar</code> to output the outline in the sidebar</li>
+</ul>
 <h1 id="v081">v0.8.1</h1>
 <p>Sep 29, 2025</p>
 <ul>
@@ -1152,53 +1157,71 @@ a.permalink:hover{
 </ul>
 </li>
 </ul>
-<h2 id="v080">v0.8.0 <a class="permalink" href="#v080">#</a></h2>
+<h2 id="v080">v0.8.0</h2>
 <p>Sep 28, 2025</p>
 <ul>
 <li>Fix the issue where IDs were not compatible with GitHub when headers contained non-ASCII characters.</li>
 </ul>
-<h2 id="v070">v0.7.0 <a class="permalink" href="#v070">#</a></h2>
+<h2 id="v070">v0.7.0</h2>
 <p>Sep 17, 2025</p>
 <ul>
 <li>Changed output format to XHTML</li>
 <li>Stopped wrapping the contents of <code>&lt;style&gt;..&lt;/style&gt;</code> tags with <code>&lt;!--..--&gt;</code></li>
 </ul>
-<h2 id="v060">v0.6.0 <a class="permalink" href="#v060">#</a></h2>
+<h2 id="v060">v0.6.0</h2>
 <p>May 31, 2025</p>
 <ul>
 <li>Adjusted the style of heading anchor links to appear smaller and less intrusive</li>
 <li>Anchor links next to headings are now hidden when the <code>-anchor-text</code> option is not specified</li>
 <li>Fixed: CSS output bug: % was not escaped as %%, breaking @media print rule.</li>
 </ul>
-<h2 id="v050">v0.5.0 <a class="permalink" href="#v050">#</a></h2>
+<h2 id="v050">v0.5.0</h2>
 <p>May 30, 2025</p>
 <ul>
 <li>Treat <code>-</code> as stdin</li>
 <li><strong>Added</strong> the <code>-readme-to-index</code> option, which rewrites file names starting with <code>README</code> to start with <code>index</code> in relative anchor URLs.<br />
 This is useful when generating links that point to <code>index.html</code> instead of <code>README.html</code> (e.g., <code>README_ja.md</code> → <code>index_ja.html</code>).</li>
 </ul>
-<h2 id="v040">v0.4.0 <a class="permalink" href="#v040">#</a></h2>
+<h2 id="v040">v0.4.0</h2>
 <p>May 7, 2025</p>
 <ul>
 <li>Insert <code>&lt;!DOCTYPE html&gt;</code> into generated HTML</li>
 <li>Implement <code>-title-from-file</code> option to use the contents of a specified file as the HTML title</li>
 </ul>
-<h2 id="v030">v0.3.0 <a class="permalink" href="#v030">#</a></h2>
+<h2 id="v030">v0.3.0</h2>
 <p>Mar 22, 2025</p>
 <ul>
 <li>Removed <code>-header</code> and <code>-footer</code> options. Markdown files are now specified directly in the command:</li>
 </ul>
 <pre><code>minipage HEADER.md BODY.md FOOTER.md &gt; OUTPUT.html
 </code></pre>
-<h2 id="v020">v0.2.0 <a class="permalink" href="#v020">#</a></h2>
+<h2 id="v020">v0.2.0</h2>
 <p>Mar 21, 2025</p>
 <ul>
 <li>Added the option <code>-anchor-text STRING</code></li>
 </ul>
-<h2 id="v010">v0.1.0 <a class="permalink" href="#v010">#</a></h2>
+<h2 id="v010">v0.1.0</h2>
 <p>Mar 20, 2025</p>
 <ul>
 <li>Initial release</li>
 </ul>
 </div><!-- "main" -->
+<div class="sidebar markdown-body">
+<ul>
+<li><a href="#release-notes">Release notes</a></li>
+<li><a href="#v090">v0.9.0</a></li>
+<li><a href="#v081">v0.8.1</a>
+<ul>
+<li><a href="#v080">v0.8.0</a></li>
+<li><a href="#v070">v0.7.0</a></li>
+<li><a href="#v060">v0.6.0</a></li>
+<li><a href="#v050">v0.5.0</a></li>
+<li><a href="#v040">v0.4.0</a></li>
+<li><a href="#v030">v0.3.0</a></li>
+<li><a href="#v020">v0.2.0</a></li>
+<li><a href="#v010">v0.1.0</a></li>
+</ul>
+</li>
+</ul>
+</div><!-- "sidebar" -->
 </body></html>

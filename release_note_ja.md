@@ -2,6 +2,10 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+v0.9.0
+======
+Oct 2, 2025
+
 - サイドバーにページ内目次を追加するオプション: `-outline-in-sidebar` を追加
 
 v0.8.1

@@ -2,6 +2,8 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+- Added the option `-outline-in-sidebar` to output the outline in the sidebar
+
 v0.8.1
 ======
 Sep 29, 2025

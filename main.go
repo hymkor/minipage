@@ -22,6 +22,8 @@ import (
 
 	"github.com/hymkor/exregexp-go"
 	"github.com/hymkor/goldmark-mb-headingids"
+
+	"github.com/hymkor/minipage/internal/outline"
 )
 
 //go:embed github.css
@@ -115,24 +117,21 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 	return source
 }
 
-func (M *Markdown) makePage(path, class string, w io.Writer) error {
+func (M *Markdown) fromBytes(source []byte, w io.Writer) ([]byte, error) {
+	source = M.rewriteLinks(source)
+	ctx := parser.NewContext(parser.WithIDs(headingids.New()))
+	return source, M.Convert(source, w, parser.WithContext(ctx))
+}
+
+func (M *Markdown) fromFile(path string, w io.Writer) ([]byte, error) {
 	if path == "" {
-		return nil
+		return nil, nil
 	}
 	source, err := readFileOrStdin(path)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	source = M.rewriteLinks(source)
-	if class != "" {
-		fmt.Fprintf(w, "<div class=\"%s\">\n", class)
-	}
-	mdCtx := parser.NewContext(parser.WithIDs(headingids.New()))
-	err = M.Convert(source, w, parser.WithContext(mdCtx))
-	if class != "" {
-		fmt.Fprintf(w, "</div><!-- \"%s\" -->\n", class)
-	}
-	return err
+	return M.fromBytes(source, w)
 }
 
 // Make generates an HTML page from the given Markdown file paths.
@@ -140,7 +139,7 @@ func (M *Markdown) makePage(path, class string, w io.Writer) error {
 // The bodies argument is a list of paths to main content Markdown files.
 // The title argument specifies the HTML <title> element content.
 // The generated HTML is written to the writer w.
-func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer) error {
+func (M *Markdown) Make(bodies []string, sidebar, css, title string, outlineFlag bool, w io.Writer) error {
 	fmt.Fprintln(w, `<!DOCTYPE html><html><head>`)
 	if title != "" {
 		fmt.Fprintf(w, "<title>%s</title>\n", html.EscapeString(title))
@@ -154,18 +153,41 @@ func (M *Markdown) Make(bodies []string, sidebar, css, title string, w io.Writer
 		io.WriteString(w, "\n</style>\n")
 	}
 	fmt.Fprintln(w, "</head><body>")
+	defer fmt.Fprintln(w, `</body></html>`)
 
 	fmt.Fprintln(w, "<div class=\"main markdown-body\">")
+	source := []byte{}
 	for _, body := range bodies {
-		if err := M.makePage(body, "", w); err != nil {
+		if src, err := M.fromFile(body, w); err != nil {
 			return err
+		} else {
+			source = append(source, src...)
 		}
 	}
 	fmt.Fprintln(w, "</div><!-- \"main\" -->")
-	if err := M.makePage(sidebar, "sidebar markdown-body", w); err != nil {
-		return err
+
+	if sidebar != "" || outlineFlag {
+		fmt.Fprintln(w, "<div class=\"sidebar markdown-body\">")
+		defer fmt.Fprintln(w, "</div><!-- \"sidebar\" -->")
+
+		if outlineFlag {
+			headers, err := outline.FromReader(bytes.NewReader(source))
+			if err != nil {
+				return err
+			}
+			var b bytes.Buffer
+			outline.List(headers, "", "\n", &b)
+			outlineMarkdown := b.Bytes()
+			if _, err = M.fromBytes(outlineMarkdown, w); err != nil {
+				return err
+			}
+		}
+		if sidebar != "" {
+			if _, err := M.fromFile(sidebar, w); err != nil {
+				return err
+			}
+		}
 	}
-	fmt.Fprintln(w, `</body></html>`)
 	return nil
 }
 
@@ -185,6 +207,7 @@ var (
 
 	flagReadmeToIndex = flag.Bool("readme-to-index", false,
 		"Replace file names starting with 'README' with 'index' in relative anchor URLs")
+	flagOutline = flag.Bool("outline-in-sidebar", false, "Output the outline in the sidebar")
 )
 
 func mains(args []string) error {
@@ -206,7 +229,7 @@ func mains(args []string) error {
 			title = string(b)
 		}
 	}
-	return m.Make(args, *flagSidebar, *flagCSS, title, os.Stdout)
+	return m.Make(args, *flagSidebar, *flagCSS, title, *flagOutline, os.Stdout)
 }
 
 var version string

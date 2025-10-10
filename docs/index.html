@@ -1193,12 +1193,11 @@ scoop install hymkor/minipage
 <h2 id="example-use-case">Example Use Case</h2>
 <p>The website for <a href="https://nyaos.org/nyagos">nyagos</a>, a command-line shell for Windows, is built using <strong>minipage</strong>.</p>
 <p>You can also use minipage to generate GitHub Pages content for its own project site:</p>
+<p><strong>Makefile</strong></p>
 <pre><code class="language-Makefile">docs:
-	&quot;./minipage&quot; -anchor-text &quot;#&quot; -readme-to-index -title &quot;minipage - Minimal Static Page Generator&quot; README.md &gt; docs/index.html
-	&quot;./minipage&quot; -anchor-text &quot;#&quot; -readme-to-index -title &quot;Release Notes&quot; release_note.md &gt; docs/release_note.html
-	&quot;./minipage&quot; -anchor-text &quot;#&quot; -readme-to-index -title &quot;Release Notes(ja)&quot; release_note_ja.md &gt; docs/release_note_ja.html
-
-.PHONY: all test dist _dist clean manifest release docs
+	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;minipage - Minimal Static Page Generator&quot; README.md &gt; docs/index.html
+	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;Release Notes&quot; release_note.md &gt; docs/release_note.html
+	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;Release Notes(ja)&quot; release_note_ja.md &gt; docs/release_note_ja.html
 </code></pre>
 <p>This example generates clean HTML pages from Markdown source files for use with GitHub Pages.</p>
 <h2 id="technical-details">Technical Details</h2>

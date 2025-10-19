@@ -2,6 +2,13 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+- In outline output, the indent depth before the Markdown list marker was previously calculated as **(heading level × 4)**. However:
+
+  - When the heading level is two or more levels deep, it may not be recognized as nested.
+  - Some documents start directly with `##`.
+
+  To address this, the indent is now calculated as **((heading level − top-level heading level) × 2)**.
+
 v0.9.0
 ======
 Oct 2, 2025

@@ -36,7 +36,7 @@ manifest:
 	make-scoop-manifest *-windows-*.zip > $(NAME).json
 
 release:
-	goawk -f latest-notes.awk release_note*.md | gh release create -d --notes-file - -t $(VERSION) $(VERSION) $(wildcard $(NAME)-$(VERSION)-*.zip)
+	pwsh latest-notes.ps1 | gh release create -d --notes-file - -t $(VERSION) $(VERSION) $(wildcard $(NAME)-$(VERSION)-*.zip)
 
 docs:
 	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html

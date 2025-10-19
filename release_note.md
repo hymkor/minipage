@@ -2,6 +2,10 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.10.0
+-------
+Oct 19, 2025
+
 - In outline output, the indent depth before the Markdown list marker was previously calculated as **(heading level × 4)**. However:
 
   - When the heading level is two or more levels deep, it may not be recognized as nested.

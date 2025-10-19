@@ -10,13 +10,13 @@ Release notes
   To address this, the indent is now calculated as **((heading level − top-level heading level) × 2)**.
 
 v0.9.0
-======
+------
 Oct 2, 2025
 
 - Added the option `-outline-in-sidebar` to output the outline in the sidebar
 
 v0.8.1
-======
+------
 Sep 29, 2025
 
 - Use `hymkor/goldmark-mb-headingids` instead of `hymkor/xnhttpd/idgen`

@@ -10,13 +10,13 @@ Release notes
   という問題があるため、{(見だしのレベル-最もトップの見出しのレベル)×2桁}とした
 
 v0.9.0
-======
+-----
 Oct 2, 2025
 
 - サイドバーにページ内目次を追加するオプション: `-outline-in-sidebar` を追加
 
 v0.8.1
-======
+-----
 Sep 29, 2025
 
 - `hymkor/xnhttpd/idgen` のかわりに `hymkor/goldmark-mb-headingids` を使用

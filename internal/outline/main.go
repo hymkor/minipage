@@ -117,10 +117,10 @@ func FromReader(r io.Reader) ([]*Header, error) {
 	return headers, sc.Err()
 }
 
-func (h *Header) WriteTo(baseUrl string, w io.Writer) (int, error) {
+func (h *Header) WriteTo(topLevel int, baseUrl string, w io.Writer) (int, error) {
 	n := 0
-	for i := 1; i < h.Level; i++ {
-		_n, err := io.WriteString(w, "    ")
+	for i := topLevel; i < h.Level; i++ {
+		_n, err := io.WriteString(w, "  ")
 		n += _n
 		if err != nil {
 			return n, err
@@ -132,9 +132,15 @@ func (h *Header) WriteTo(baseUrl string, w io.Writer) (int, error) {
 }
 
 func List(headers []*Header, baseUrl, newline string, w io.Writer) (int, error) {
+	topLevel := 100
+	for _, h := range headers {
+		if h.Level < topLevel {
+			topLevel = h.Level
+		}
+	}
 	n := 0
 	for _, h := range headers {
-		_n, err := h.WriteTo(baseUrl, w)
+		_n, err := h.WriteTo(topLevel, baseUrl, w)
 		n += _n
 		if err != nil {
 			return n, err

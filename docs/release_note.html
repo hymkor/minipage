@@ -1142,12 +1142,30 @@ a.permalink:hover{
 <div class="main markdown-body">
 <h1 id="release-notes">Release notes</h1>
 <p><strong>English</strong> / <a href="./release_note_ja.html">Japanese</a> / <a href="./index.html">Top</a></p>
-<h1 id="v090">v0.9.0</h1>
+<h2 id="v0110">v0.11.0</h2>
+<p>Feb 13, 2026</p>
+<ul>
+<li>Changed: Markdown files now support raw HTML. Embedded HTML tags will be preserved and rendered directly in the output. (#1)</li>
+<li>Added: Support for inline HTML arguments. You can now pass raw HTML strings directly as command-line arguments without creating a separate file. (#2)</li>
+</ul>
+<h2 id="v0100">v0.10.0</h2>
+<p>Oct 19, 2025</p>
+<ul>
+<li>
+<p>In outline output, the indent depth before the Markdown list marker was previously calculated as <strong>(heading level × 4)</strong>. However:</p>
+<ul>
+<li>When the heading level is two or more levels deep, it may not be recognized as nested.</li>
+<li>Some documents start directly with <code>##</code>.</li>
+</ul>
+<p>To address this, the indent is now calculated as <strong>((heading level − top-level heading level) × 2)</strong>.</p>
+</li>
+</ul>
+<h2 id="v090">v0.9.0</h2>
 <p>Oct 2, 2025</p>
 <ul>
 <li>Added the option <code>-outline-in-sidebar</code> to output the outline in the sidebar</li>
 </ul>
-<h1 id="v081">v0.8.1</h1>
+<h2 id="v081">v0.8.1</h2>
 <p>Sep 29, 2025</p>
 <ul>
 <li>Use <code>hymkor/goldmark-mb-headingids</code> instead of <code>hymkor/xnhttpd/idgen</code>
@@ -1208,10 +1226,12 @@ This is useful when generating links that point to <code>index.html</code> inste
 </div><!-- "main" -->
 <div class="sidebar markdown-body">
 <ul>
-<li><a href="#release-notes">Release notes</a></li>
-<li><a href="#v090">v0.9.0</a></li>
-<li><a href="#v081">v0.8.1</a>
+<li><a href="#release-notes">Release notes</a>
 <ul>
+<li><a href="#v0110">v0.11.0</a></li>
+<li><a href="#v0100">v0.10.0</a></li>
+<li><a href="#v090">v0.9.0</a></li>
+<li><a href="#v081">v0.8.1</a></li>
 <li><a href="#v080">v0.8.0</a></li>
 <li><a href="#v070">v0.7.0</a></li>
 <li><a href="#v060">v0.6.0</a></li>

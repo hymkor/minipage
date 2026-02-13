@@ -2,6 +2,8 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+- 変更: markdown ファイルで生HTMLを使えるようにした。埋め込んだ HTML タグは維持され、そのまま出力されるようにした。 (#1)
+
 v0.10.0
 -------
 Oct 19, 2025

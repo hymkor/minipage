@@ -74,6 +74,7 @@ func New(anchorText string) *Markdown {
 		goldmark.WithExtensions(ext...),
 		goldmark.WithRendererOptions(
 			ghtml.WithXHTML(),
+			ghtml.WithUnsafe(),
 		),
 	}
 	return &Markdown{

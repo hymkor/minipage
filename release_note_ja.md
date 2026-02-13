@@ -3,6 +3,7 @@ Release notes
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
 - 変更: markdown ファイルで生HTMLを使えるようにした。埋め込んだ HTML タグは維持され、そのまま出力されるようにした。 (#1)
+- 追加: インラインの HTML 引数をサポート。独立したファイルを用意しなくとも、コマンドライン引数で直接 HTML 文字列を与えられるようにした。 (#2)
 
 v0.10.0
 -------

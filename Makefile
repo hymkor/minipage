@@ -33,7 +33,7 @@ clean:
 	$(DEL) *.zip $(NAME)$(EXE)
 
 manifest:
-	make-scoop-manifest *-windows-*.zip > $(NAME).json
+	go run github.com/hymkor/make-scoop-manifest@latest *-windows-*.zip > $(NAME).json
 
 release:
 	go run github.com/hymkor/latest-notes@latest | gh release create -d --notes-file - -t $(VERSION) $(VERSION) $(wildcard $(NAME)-$(VERSION)-*.zip)

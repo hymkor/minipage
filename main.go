@@ -91,6 +91,12 @@ func readFileOrStdin(path string) ([]byte, error) {
 	if path == "-" {
 		return io.ReadAll(os.Stdin)
 	}
+	if len(path) > 0 && path[0] == '<' {
+		var b bytes.Buffer
+		b.WriteString(path)
+		b.WriteByte('\n')
+		return b.Bytes(), nil
+	}
 	return os.ReadFile(path)
 }
 

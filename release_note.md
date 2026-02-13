@@ -2,6 +2,10 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.11.0
+-------
+Feb 13, 2026
+
 - Changed: Markdown files now support raw HTML. Embedded HTML tags will be preserved and rendered directly in the output. (#1)
 - Added: Support for inline HTML arguments. You can now pass raw HTML strings directly as command-line arguments without creating a separate file. (#2)
 

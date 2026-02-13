@@ -45,8 +45,10 @@ scoop install hymkor/minipage
 ## Usage
 
 ```
-minipage {options} FILE1.md [FILE2.md ...] > OUTPUT.html
+minipage {options} SOURCE1 [SOURCE2 ...] > OUTPUT.html
 ```
+
+`SOURCE` can be either a **Markdown file path** or a **raw HTML string**. `minipage` concatenates them in the order provided, similar to the `cat` command.
 
 ### Options
 
@@ -60,11 +62,23 @@ minipage {options} FILE1.md [FILE2.md ...] > OUTPUT.html
 
 ## Example
 
+### Basic multi-file generation
+
 To build a simple page with multiple sections:
 
 ```
 minipage header.md content.md footer.md > index.html
 ```
+
+### Passing HTML strings directly
+
+You can inject HTML snippets (like logos or navigation) directly from the command line without creating extra files. This is useful for customizing GitHub Pages while keeping your `README.md` clean:
+
+```bash
+minipage "<img src='logo.png' align='left' width='100' />" README.md > index.html
+```
+
+### Using with `make`
 
 Combine it with `make` for efficient site generation:
 

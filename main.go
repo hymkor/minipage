@@ -10,7 +10,6 @@ import (
 	"os"
 	"regexp"
 	"runtime"
-	"slices"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark-meta"
@@ -100,6 +99,13 @@ func readFileOrStdin(path string) ([]byte, error) {
 	return os.ReadFile(path)
 }
 
+func slicesConcat[T any](s ...[]T) (result []T) {
+	for _, s1 := range s {
+		result = append(result, s1...)
+	}
+	return
+}
+
 func (M *Markdown) rewriteLinks(source []byte) []byte {
 	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor1, source, func(s [][]byte) []byte {
 		url := s[2]
@@ -109,7 +115,7 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 		for _, f := range M.linkRewriters {
 			url = f(url)
 		}
-		return slices.Concat(s[1], url, []byte(".html)"))
+		return slicesConcat(s[1], url, []byte(".html)"))
 	})
 	source = exregexp.ReplaceAllSubmatchFunc(rxAnchor2, source, func(s [][]byte) []byte {
 		url := s[2]
@@ -119,7 +125,7 @@ func (M *Markdown) rewriteLinks(source []byte) []byte {
 		for _, f := range M.linkRewriters {
 			url = f(url)
 		}
-		return slices.Concat(s[1], url, []byte(".html"))
+		return slicesConcat(s[1], url, []byte(".html"))
 	})
 	return source
 }

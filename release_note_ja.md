@@ -2,6 +2,10 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+v0.11.1
+-------
+Feb 14, 2026
+
 - 可能ならば、最新の Go (1.24.1) ではなく、Go 1.20.14 を使用するようにした。(#4)
   - "slices" を使用しないようにした
   - go.abhg.dev/goldmark/anchor v0.2.0 を v0.1.1 へダウングレード

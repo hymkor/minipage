@@ -48,4 +48,7 @@ docs:
 	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
 	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
 
+readme:
+	$(GO) run github.com/hymkor/example-into-readme@latest
+
 .PHONY: all test dist _dist clean manifest release docs

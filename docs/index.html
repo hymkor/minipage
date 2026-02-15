@@ -1141,8 +1141,12 @@ a.permalink:hover{
 </head><body>
 <div class="main markdown-body">
 <h1 id="minipage---minimal-static-page-generator">minipage - Minimal Static Page Generator</h1>
-<p><a href="https://pkg.go.dev/github.com/hymkor/minipage"><img src="https://pkg.go.dev/badge/github.com/hymkor/minipage.svg" alt="Go Reference" /></a>
-<a href="https://github.com/hymkor/minipage/actions/workflows/go.yml"><img src="https://github.com/hymkor/minipage/actions/workflows/go.yml/badge.svg" alt="Go Test" /></a></p>
+<!-- stdout: go run github.com/hymkor/example-into-readme/cmd/badges@latest -->
+<p><a href="https://github.com/hymkor/minipage/actions/workflows/go.yml"><img src="https://github.com/hymkor/minipage/actions/workflows/go.yml/badge.svg" alt="Go Test" /></a>
+<a href="https://github.com/hymkor/minipage/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-red" alt="License" /></a>
+<a href="https://pkg.go.dev/github.com/hymkor/minipage"><img src="https://pkg.go.dev/badge/github.com/hymkor/minipage.svg" alt="Go Reference" /></a>
+<a href="https://github.com/hymkor/minipage"><img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="GitHub" /></a></p>
+<!-- -->
 <p><strong>minipage</strong> is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, <strong>minipage</strong> is for you.</p>
 <p>If you'd like to use <strong>GitHub Pages</strong> but find existing static site generators too complex or heavy, <strong>minipage</strong> is a lightweight alternative that gets the job done.</p>
 <p>With <strong>minipage</strong>, you can render Markdown into clean, GitHub-like HTML without sidebars, banners, or other distractions. It generates one page at a time, giving you full control over your site's structure using tools like <code>make</code>.</p>
@@ -1195,7 +1199,7 @@ minipage &quot;&lt;img src='logo.png' align='left' width='100' /&gt;&quot; READM
 </code></pre>
 <h3 id="using-with-make">Using with <code>make</code></h3>
 <p>Combine it with <code>make</code> for efficient site generation:</p>
-<pre><code class="language-makefile">all:
+<pre><code>all:
 	minipage header.md index.md footer.md &gt; index.html
 	minipage header.md about.md footer.md &gt; about.html
 </code></pre>
@@ -1203,7 +1207,7 @@ minipage &quot;&lt;img src='logo.png' align='left' width='100' /&gt;&quot; READM
 <p>The website for <a href="https://nyaos.org/nyagos">nyagos</a>, a command-line shell for Windows, is built using <strong>minipage</strong>.</p>
 <p>You can also use minipage to generate GitHub Pages content for its own project site:</p>
 <p><strong>Makefile</strong></p>
-<pre><code class="language-Makefile">docs:
+<pre><code>docs:
 	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;minipage - Minimal Static Page Generator&quot; README.md &gt; docs/index.html
 	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;Release Notes&quot; release_note.md &gt; docs/release_note.html
 	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;Release Notes(ja)&quot; release_note_ja.md &gt; docs/release_note_ja.html

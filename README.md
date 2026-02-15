@@ -1,7 +1,11 @@
 # minipage - Minimal Static Page Generator
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/hymkor/minipage.svg)](https://pkg.go.dev/github.com/hymkor/minipage)
+<!-- stdout: go run github.com/hymkor/example-into-readme/cmd/badges@latest -->
 [![Go Test](https://github.com/hymkor/minipage/actions/workflows/go.yml/badge.svg)](https://github.com/hymkor/minipage/actions/workflows/go.yml)
+[![License](https://img.shields.io/badge/License-MIT-red)](https://github.com/hymkor/minipage/blob/master/LICENSE)
+[![Go Reference](https://pkg.go.dev/badge/github.com/hymkor/minipage.svg)](https://pkg.go.dev/github.com/hymkor/minipage)
+[![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/hymkor/minipage)
+<!-- -->
 
 **minipage** is a simple static page generator designed to be easy to use without unnecessary complexity. If you'd like to render Markdown files into clean HTML with minimal effort, **minipage** is for you.
 
@@ -85,7 +89,7 @@ minipage "<img src='logo.png' align='left' width='100' />" README.md > index.htm
 
 Combine it with `make` for efficient site generation:
 
-```makefile
+```
 all:
 	minipage header.md index.md footer.md > index.html
 	minipage header.md about.md footer.md > about.html
@@ -99,7 +103,7 @@ You can also use minipage to generate GitHub Pages content for its own project s
 
 **Makefile**
 
-```Makefile
+```
 docs:
 	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
 	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html

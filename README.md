@@ -72,9 +72,12 @@ minipage header.md content.md footer.md > index.html
 
 ### Passing HTML strings directly
 
-You can inject HTML snippets (like logos or navigation) directly from the command line without creating extra files. This is useful for customizing GitHub Pages while keeping your `README.md` clean:
+You can inject HTML snippets directly from the command line. This is particularly useful for adding elements like logos that you might want to exclude from the original `README.md`.
+
+Since the tool detects HTML by the leading `<` character, ensure you wrap the string in quotes to prevent shell redirection:
 
 ```bash
+# The leading '<' tells minipage this is HTML, not a file
 minipage "<img src='logo.png' align='left' width='100' />" README.md > index.html
 ```
 

@@ -1188,8 +1188,10 @@ scoop install hymkor/minipage
 <pre><code>minipage header.md content.md footer.md &gt; index.html
 </code></pre>
 <h3 id="passing-html-strings-directly">Passing HTML strings directly</h3>
-<p>You can inject HTML snippets (like logos or navigation) directly from the command line without creating extra files. This is useful for customizing GitHub Pages while keeping your <code>README.md</code> clean:</p>
-<pre><code class="language-bash">minipage &quot;&lt;img src='logo.png' align='left' width='100' /&gt;&quot; README.md &gt; index.html
+<p>You can inject HTML snippets directly from the command line. This is particularly useful for adding elements like logos that you might want to exclude from the original <code>README.md</code>.</p>
+<p>Since the tool detects HTML by the leading <code>&lt;</code> character, ensure you wrap the string in quotes to prevent shell redirection:</p>
+<pre><code class="language-bash"># The leading '&lt;' tells minipage this is HTML, not a file
+minipage &quot;&lt;img src='logo.png' align='left' width='100' /&gt;&quot; README.md &gt; index.html
 </code></pre>
 <h3 id="using-with-make">Using with <code>make</code></h3>
 <p>Combine it with <code>make</code> for efficient site generation:</p>

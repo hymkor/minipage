@@ -106,8 +106,8 @@ You can also use minipage to generate GitHub Pages content for its own project s
 ```
 docs:
 	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
-	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
-	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "CHANGELOG" CHANGELOG.md > docs/CHANGELOG.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "CHANGELOG" CHANGELOG_ja.md > docs/CHANGELOG_ja.html
 ```
 
 This example generates clean HTML pages from Markdown source files for use with GitHub Pages.
@@ -115,7 +115,7 @@ This example generates clean HTML pages from Markdown source files for use with 
 ## Technical Details
 
 - **Markdown to HTML Conversion:** Powered by [goldmark](https://github.com/yuin/goldmark), a CommonMark-compliant Markdown parser written in Go that is easy to extend and well-structured.
-- **GitHub-like CSS:** Uses [github-markdown-css](https://github.com/sindresorhus/github-markdown-css), a minimal CSS file that replicates the GitHub Markdown style.
+- **GitHub-like CSS:** Uses a lightweight custom stylesheet for GitHub-like Markdown rendering.
 - **Anchor URL Rewriting:** In relative anchor URLs, file extensions `.md` are automatically rewritten to `.html`. This allows links between Markdown files to remain functional after conversion.
 
 ## Why minipage?
@@ -128,10 +128,10 @@ If you value:
 
 **minipage** is designed for you.
 
-## Release notes
+## CHANGELOG
 
-- [English](release_note.md)
-- [Japanese](release_note_ja.md)
+- [English](CHANGELOG.md)
+- [Japanese](CHANGELOG_ja.md)
 
 ## Author
 

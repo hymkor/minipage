@@ -1,0 +1,254 @@
+<!DOCTYPE html><html><head>
+<title>CHANGELOG</title>
+<style type="text/css">
+.markdown-body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 16px;
+    line-height: 1.6;
+    color: #24292f;
+    max-width: 900px;
+    margin: auto;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+    border-bottom: 1px solid #d8dee4;
+    padding-bottom: .3em;
+    font-weight: 600;
+}
+
+.markdown-body h1 { font-size: 2em; }
+.markdown-body h2 { font-size: 1.5em; }
+.markdown-body h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.markdown-body b,
+.markdown-body strong {
+    font-weight: 600;
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol {
+    margin: 0 0 1em;
+}
+
+.markdown-body a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+.markdown-body a:hover {
+    text-decoration: underline;
+}
+
+.markdown-body blockquote {
+    margin: 0 0 1em;
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 4px solid #d0d7de;
+}
+
+.markdown-body pre {
+    padding: 1em;
+    overflow-x: auto;
+    background: #f6f8fa;
+    border-radius: 6px;
+    font-size: 85%;
+}
+
+.markdown-body code {
+    background: #eff1f3;
+    padding: .15em .3em;
+    border-radius: 3px;
+}
+
+.markdown-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.markdown-body table {
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+}
+
+.markdown-body th,
+.markdown-body td {
+    border: 1px solid #d0d7de;
+    padding: .4em .8em;
+}
+
+.markdown-body th {
+    background: #f6f8fa;
+}
+
+.markdown-body img {
+    max-width: 100%;
+}
+
+.markdown-body hr {
+    border: 0;
+    border-top: 1px solid #d8dee4;
+}
+
+.markdown-body tt,
+.markdown-body code,
+.markdown-body pre {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+body{
+  display:flex;
+  overflow-y: scroll;
+}
+@media screen{
+  div.sidebar{ width:30% }
+  div.main{ width:70% }
+}
+
+@media print{
+  div.sidebar,div.footer{ display:none }
+  div.main{ width:100% }
+}
+a.permalink{
+  font-size: 0.75em;
+  vertical-align: super;
+  text-decoration: none;
+  margin-left: 0.3em;
+  color: #888;
+}
+a.permalink:hover{
+  color: #000;
+  text-decoration: underline;
+}
+
+</style>
+</head><body>
+<div class="main markdown-body">
+<h1 id="changelog">CHANGELOG</h1>
+<p><a href="./release_note.html">English</a> / <strong>Japanese</strong> / <a href="./index.html">Top</a></p>
+<ul>
+<li>GitHub互換CSSを、より軽量なスタイルシートに置き換えた (#8)</li>
+</ul>
+<h2 id="v0111">v0.11.1</h2>
+<p>Feb 14, 2026</p>
+<ul>
+<li>可能ならば、最新の Go (1.24.1) ではなく、Go 1.20.14 を使用するようにした。(#4)
+<ul>
+<li>&quot;slices&quot; を使用しないようにした</li>
+<li>go.abhg.dev/goldmark/anchor v0.2.0 を v0.1.1 へダウングレード</li>
+</ul>
+</li>
+</ul>
+<h2 id="v0110">v0.11.0</h2>
+<p>Feb 13, 2026</p>
+<ul>
+<li>変更: markdown ファイルで生HTMLを使えるようにした。埋め込んだ HTML タグは維持され、そのまま出力されるようにした。 (#1)</li>
+<li>追加: インラインの HTML 引数をサポート。独立したファイルを用意しなくとも、コマンドライン引数で直接 HTML 文字列を与えられるようにした。 (#2)</li>
+</ul>
+<h2 id="v0100">v0.10.0</h2>
+<p>Oct 19, 2025</p>
+<ul>
+<li>
+<p>アウトライン出力において、(見出しのレベル×4桁)を markdown の箇条書きマーク前のインデント深さとしていたが</p>
+<ul>
+<li>見だしのレベルが二つ深くなると、入れ子と認識しなくなる</li>
+<li>いきなり <code>##</code> から始まるケースもある</li>
+</ul>
+<p>という問題があるため、{(見だしのレベル-最もトップの見出しのレベル)×2桁}とした</p>
+</li>
+</ul>
+<h2 id="v090">v0.9.0</h2>
+<p>Oct 2, 2025</p>
+<ul>
+<li>サイドバーにページ内目次を追加するオプション: <code>-outline-in-sidebar</code> を追加</li>
+</ul>
+<h2 id="v081">v0.8.1</h2>
+<p>Sep 29, 2025</p>
+<ul>
+<li><code>hymkor/xnhttpd/idgen</code> のかわりに <code>hymkor/goldmark-mb-headingids</code> を使用
+<ul>
+<li>見出し文字のうち、英数字ではないシングルバイト文字が ID に入っていて、GitHub 非互換になっていた問題を修正</li>
+<li>見出しに ID として使える文字が一文字もない時、<code>heading</code> ではなく、調査用に仮に設定していた<code>xheading</code> が ID として使われていた問題を修正</li>
+</ul>
+</li>
+</ul>
+<h2 id="v080">v0.8.0</h2>
+<p>Sep 28, 2025</p>
+<ul>
+<li>見出しが日本語だった時、ID が GitHub 非互換になっていた問題を修正</li>
+</ul>
+<h2 id="v070">v0.7.0</h2>
+<p>Sep 17, 2025</p>
+<ul>
+<li>XHTML形式で出力するようにした</li>
+<li><code>&lt;style&gt;..&lt;/style&gt;</code>タグの中身を<code>&lt;!--..--&gt;</code> で囲まないようにした</li>
+</ul>
+<h2 id="v060">v0.6.0</h2>
+<p>May 31, 2025</p>
+<ul>
+<li>見出しのアンカーリンクのスタイルを調整して、小さくて邪魔にならないように見えるようにした</li>
+<li><code>-anchor-text</code> オプションが指定されていないときに、見出しの横にあるアンカーリンクを隠すようにした</li>
+<li>CSSの出力不具合: <code>%</code> が <code>%%</code> とエスケープされていなかったため、@media print ルールを壊していた</li>
+</ul>
+<h2 id="v050">v0.5.0</h2>
+<p>May 30, 2025</p>
+<ul>
+<li>ファイル名として与えられた <code>-</code> は標準入力として扱うようにした。</li>
+<li><strong>追加</strong>: <code>-readme-to-index</code> オプションを追加した。相対リンク中の <code>README</code> で始まるファイル名（例：<code>README_ja</code>）を <code>index</code> に変換する（例：<code>index_ja</code>）。拡張子 <code>.md → .html</code> の変換や、相対 URL の処理はこのオプションに関係なく常に行われる。</li>
+</ul>
+<h2 id="v040">v0.4.0</h2>
+<p>May 7, 2025</p>
+<ul>
+<li>生成されるHTMLに <code>&lt;!DOCTYPE html&gt;</code> を挿入するようにした</li>
+<li>指定したファイルの中味を HTML のタイトルとして使うオプション <code>-title-from-file</code> を実装</li>
+</ul>
+<h2 id="v030">v0.3.0</h2>
+<p>Mar 22, 2025</p>
+<ul>
+<li><code>-header</code>, <code>-footer</code> オプションを削除。markdownファイルはコマンドラインで直接指定するようにした。</li>
+</ul>
+<pre><code>minipage HEADER.md BODY.md FOOTER.md &gt; OUTPUT.html
+</code></pre>
+<h2 id="v020">v0.2.0</h2>
+<p>Mar 21, 2025</p>
+<ul>
+<li>オプション <code>-anchor-text STRING</code> を追加</li>
+</ul>
+<h2 id="v010">v0.1.0</h2>
+<p>Mar 20, 2025</p>
+<ul>
+<li>初版</li>
+</ul>
+</div><!-- "main" -->
+<div class="sidebar markdown-body">
+<ul>
+<li><a href="#changelog">CHANGELOG</a>
+<ul>
+<li><a href="#v0111">v0.11.1</a></li>
+<li><a href="#v0110">v0.11.0</a></li>
+<li><a href="#v0100">v0.10.0</a></li>
+<li><a href="#v090">v0.9.0</a></li>
+<li><a href="#v081">v0.8.1</a></li>
+<li><a href="#v080">v0.8.0</a></li>
+<li><a href="#v070">v0.7.0</a></li>
+<li><a href="#v060">v0.6.0</a></li>
+<li><a href="#v050">v0.5.0</a></li>
+<li><a href="#v040">v0.4.0</a></li>
+<li><a href="#v030">v0.3.0</a></li>
+<li><a href="#v020">v0.2.0</a></li>
+<li><a href="#v010">v0.1.0</a></li>
+</ul>
+</li>
+</ul>
+</div><!-- "sidebar" -->
+</body></html>

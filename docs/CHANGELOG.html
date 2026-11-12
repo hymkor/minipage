@@ -1,0 +1,255 @@
+<!DOCTYPE html><html><head>
+<title>CHANGELOG</title>
+<style type="text/css">
+.markdown-body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 16px;
+    line-height: 1.6;
+    color: #24292f;
+    max-width: 900px;
+    margin: auto;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+    border-bottom: 1px solid #d8dee4;
+    padding-bottom: .3em;
+    font-weight: 600;
+}
+
+.markdown-body h1 { font-size: 2em; }
+.markdown-body h2 { font-size: 1.5em; }
+.markdown-body h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.markdown-body b,
+.markdown-body strong {
+    font-weight: 600;
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol {
+    margin: 0 0 1em;
+}
+
+.markdown-body a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+.markdown-body a:hover {
+    text-decoration: underline;
+}
+
+.markdown-body blockquote {
+    margin: 0 0 1em;
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 4px solid #d0d7de;
+}
+
+.markdown-body pre {
+    padding: 1em;
+    overflow-x: auto;
+    background: #f6f8fa;
+    border-radius: 6px;
+    font-size: 85%;
+}
+
+.markdown-body code {
+    background: #eff1f3;
+    padding: .15em .3em;
+    border-radius: 3px;
+}
+
+.markdown-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.markdown-body table {
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+}
+
+.markdown-body th,
+.markdown-body td {
+    border: 1px solid #d0d7de;
+    padding: .4em .8em;
+}
+
+.markdown-body th {
+    background: #f6f8fa;
+}
+
+.markdown-body img {
+    max-width: 100%;
+}
+
+.markdown-body hr {
+    border: 0;
+    border-top: 1px solid #d8dee4;
+}
+
+.markdown-body tt,
+.markdown-body code,
+.markdown-body pre {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+body{
+  display:flex;
+  overflow-y: scroll;
+}
+@media screen{
+  div.sidebar{ width:30% }
+  div.main{ width:70% }
+}
+
+@media print{
+  div.sidebar,div.footer{ display:none }
+  div.main{ width:100% }
+}
+a.permalink{
+  font-size: 0.75em;
+  vertical-align: super;
+  text-decoration: none;
+  margin-left: 0.3em;
+  color: #888;
+}
+a.permalink:hover{
+  color: #000;
+  text-decoration: underline;
+}
+
+</style>
+</head><body>
+<div class="main markdown-body">
+<h1 id="changelog">Changelog</h1>
+<p><strong>English</strong> / <a href="./release_note_ja.html">Japanese</a> / <a href="./index.html">Top</a></p>
+<ul>
+<li>Replace GitHub Markdown CSS with a simpler, lightweight stylesheet (#8)</li>
+</ul>
+<h2 id="v0111">v0.11.1</h2>
+<p>Feb 14, 2026</p>
+<ul>
+<li>Use Go 1.20.14 instead of latest Go (1.24.1) if possible. (#4)
+<ul>
+<li>Stop using &quot;slices&quot;</li>
+<li>Downgrade go.abhg.dev/goldmark/anchor from v0.2.0 to v0.1.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="v0110">v0.11.0</h2>
+<p>Feb 13, 2026</p>
+<ul>
+<li>Changed: Markdown files now support raw HTML. Embedded HTML tags will be preserved and rendered directly in the output. (#1)</li>
+<li>Added: Support for inline HTML arguments. You can now pass raw HTML strings directly as command-line arguments without creating a separate file. (#2)</li>
+</ul>
+<h2 id="v0100">v0.10.0</h2>
+<p>Oct 19, 2025</p>
+<ul>
+<li>
+<p>In outline output, the indent depth before the Markdown list marker was previously calculated as <strong>(heading level × 4)</strong>. However:</p>
+<ul>
+<li>When the heading level is two or more levels deep, it may not be recognized as nested.</li>
+<li>Some documents start directly with <code>##</code>.</li>
+</ul>
+<p>To address this, the indent is now calculated as <strong>((heading level − top-level heading level) × 2)</strong>.</p>
+</li>
+</ul>
+<h2 id="v090">v0.9.0</h2>
+<p>Oct 2, 2025</p>
+<ul>
+<li>Added the option <code>-outline-in-sidebar</code> to output the outline in the sidebar</li>
+</ul>
+<h2 id="v081">v0.8.1</h2>
+<p>Sep 29, 2025</p>
+<ul>
+<li>Use <code>hymkor/goldmark-mb-headingids</code> instead of <code>hymkor/xnhttpd/idgen</code>
+<ul>
+<li>Fix the issue where non-alphanumeric single-byte characters in headings were included in IDs, making them incompatible with GitHub.</li>
+<li>Fix the issue where, when a heading contained no characters usable for an ID, the placeholder <code>xheading</code> was used instead of <code>heading</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="v080">v0.8.0</h2>
+<p>Sep 28, 2025</p>
+<ul>
+<li>Fix the issue where IDs were not compatible with GitHub when headers contained non-ASCII characters.</li>
+</ul>
+<h2 id="v070">v0.7.0</h2>
+<p>Sep 17, 2025</p>
+<ul>
+<li>Changed output format to XHTML</li>
+<li>Stopped wrapping the contents of <code>&lt;style&gt;..&lt;/style&gt;</code> tags with <code>&lt;!--..--&gt;</code></li>
+</ul>
+<h2 id="v060">v0.6.0</h2>
+<p>May 31, 2025</p>
+<ul>
+<li>Adjusted the style of heading anchor links to appear smaller and less intrusive</li>
+<li>Anchor links next to headings are now hidden when the <code>-anchor-text</code> option is not specified</li>
+<li>Fixed: CSS output bug: % was not escaped as %%, breaking @media print rule.</li>
+</ul>
+<h2 id="v050">v0.5.0</h2>
+<p>May 30, 2025</p>
+<ul>
+<li>Treat <code>-</code> as stdin</li>
+<li><strong>Added</strong> the <code>-readme-to-index</code> option, which rewrites file names starting with <code>README</code> to start with <code>index</code> in relative anchor URLs.<br />
+This is useful when generating links that point to <code>index.html</code> instead of <code>README.html</code> (e.g., <code>README_ja.md</code> → <code>index_ja.html</code>).</li>
+</ul>
+<h2 id="v040">v0.4.0</h2>
+<p>May 7, 2025</p>
+<ul>
+<li>Insert <code>&lt;!DOCTYPE html&gt;</code> into generated HTML</li>
+<li>Implement <code>-title-from-file</code> option to use the contents of a specified file as the HTML title</li>
+</ul>
+<h2 id="v030">v0.3.0</h2>
+<p>Mar 22, 2025</p>
+<ul>
+<li>Removed <code>-header</code> and <code>-footer</code> options. Markdown files are now specified directly in the command:</li>
+</ul>
+<pre><code>minipage HEADER.md BODY.md FOOTER.md &gt; OUTPUT.html
+</code></pre>
+<h2 id="v020">v0.2.0</h2>
+<p>Mar 21, 2025</p>
+<ul>
+<li>Added the option <code>-anchor-text STRING</code></li>
+</ul>
+<h2 id="v010">v0.1.0</h2>
+<p>Mar 20, 2025</p>
+<ul>
+<li>Initial release</li>
+</ul>
+</div><!-- "main" -->
+<div class="sidebar markdown-body">
+<ul>
+<li><a href="#changelog">Changelog</a>
+<ul>
+<li><a href="#v0111">v0.11.1</a></li>
+<li><a href="#v0110">v0.11.0</a></li>
+<li><a href="#v0100">v0.10.0</a></li>
+<li><a href="#v090">v0.9.0</a></li>
+<li><a href="#v081">v0.8.1</a></li>
+<li><a href="#v080">v0.8.0</a></li>
+<li><a href="#v070">v0.7.0</a></li>
+<li><a href="#v060">v0.6.0</a></li>
+<li><a href="#v050">v0.5.0</a></li>
+<li><a href="#v040">v0.4.0</a></li>
+<li><a href="#v030">v0.3.0</a></li>
+<li><a href="#v020">v0.2.0</a></li>
+<li><a href="#v010">v0.1.0</a></li>
+</ul>
+</li>
+</ul>
+</div><!-- "sidebar" -->
+</body></html>

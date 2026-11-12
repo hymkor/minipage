@@ -45,8 +45,8 @@ release:
 
 docs:
 	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
-	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes" release_note.md > docs/release_note.html
-	"./minipage" -outline-in-sidebar -readme-to-index -title "Release Notes(ja)" release_note_ja.md > docs/release_note_ja.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "CHANGELOG" CHANGELOG.md > docs/CHANGELOG.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "CHANGELOG" CHANGELOG_ja.md > docs/CHANGELOG_ja.html
 
 readme:
 	$(GO) run github.com/hymkor/example-into-readme@latest

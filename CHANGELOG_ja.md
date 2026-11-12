@@ -1,5 +1,5 @@
-Release notes
-=============
+CHANGELOG
+=========
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
 - GitHub互換CSSを、より軽量なスタイルシートに置き換えた (#8)

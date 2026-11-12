@@ -60,6 +60,7 @@ func New(anchorText string) *Markdown {
 			})),
 		extension.TaskList,
 		extension.Footnote,
+		extension.Strikethrough,
 		meta.New(meta.WithTable()),
 	}
 	if anchorText != "" {

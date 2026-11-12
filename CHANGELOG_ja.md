@@ -3,6 +3,7 @@ CHANGELOG
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
 - GitHub互換CSSを、より軽量なスタイルシートに置き換えた (#8)
+- macOS とFreeBSD を試験的にサポート (#9)
 
 v0.11.1
 -------

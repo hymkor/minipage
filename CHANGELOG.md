@@ -2,6 +2,10 @@ Changelog
 =========
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+v0.12.0
+-------
+Nov 12, 2026
+
 - Replace GitHub Markdown CSS with a simpler, lightweight stylesheet (#8)
 - Support FreeBSD and macOS experimantally (#9)
 

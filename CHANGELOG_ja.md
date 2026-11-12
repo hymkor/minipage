@@ -2,6 +2,10 @@ CHANGELOG
 =========
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+v0.12.0
+-------
+Nov 12, 2026
+
 - GitHub互換CSSを、より軽量なスタイルシートに置き換えた (#8)
 - macOS とFreeBSD を試験的にサポート (#9)
 

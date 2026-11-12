@@ -2,6 +2,8 @@ Release notes
 =============
 [English](./release_note.md) / **Japanese** / [Top](./README.md)
 
+- GitHub互換CSSを、より軽量なスタイルシートに置き換えた (#8)
+
 v0.11.1
 -------
 Feb 14, 2026

@@ -2,6 +2,8 @@ Release notes
 =============
 **English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
 
+- Replace GitHub Markdown CSS with a simpler, lightweight stylesheet (#8)
+
 v0.11.1
 -------
 Feb 14, 2026

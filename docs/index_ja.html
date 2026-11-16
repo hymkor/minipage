@@ -1,0 +1,271 @@
+<!DOCTYPE html><html><head>
+<title>minipage - Minimal Static Page Generator</title>
+<style type="text/css">
+.markdown-body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 16px;
+    line-height: 1.6;
+    color: #24292f;
+    max-width: 900px;
+    margin: auto;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+    border-bottom: 1px solid #d8dee4;
+    padding-bottom: .3em;
+    font-weight: 600;
+}
+
+.markdown-body h1 { font-size: 2em; }
+.markdown-body h2 { font-size: 1.5em; }
+.markdown-body h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.markdown-body b,
+.markdown-body strong {
+    font-weight: 600;
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol {
+    margin: 0 0 1em;
+}
+
+.markdown-body a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+.markdown-body a:hover {
+    text-decoration: underline;
+}
+
+.markdown-body blockquote {
+    margin: 0 0 1em;
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 4px solid #d0d7de;
+}
+
+.markdown-body pre {
+    padding: 1em;
+    overflow-x: auto;
+    background: #f6f8fa;
+    border-radius: 6px;
+    font-size: 85%;
+}
+
+.markdown-body code {
+    background: #eff1f3;
+    padding: .15em .3em;
+    border-radius: 3px;
+}
+
+.markdown-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.markdown-body table {
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+}
+
+.markdown-body th,
+.markdown-body td {
+    border: 1px solid #d0d7de;
+    padding: .4em .8em;
+}
+
+.markdown-body th {
+    background: #f6f8fa;
+}
+
+.markdown-body img {
+    max-width: 100%;
+}
+
+.markdown-body hr {
+    border: 0;
+    border-top: 1px solid #d8dee4;
+}
+
+.markdown-body tt,
+.markdown-body code,
+.markdown-body pre {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+body{
+  display:flex;
+  overflow-y: scroll;
+}
+@media screen{
+  div.sidebar{ width:30% }
+  div.main{ width:70% }
+}
+
+@media print{
+  div.sidebar,div.footer{ display:none }
+  div.main{ width:100% }
+}
+a.permalink{
+  font-size: 0.75em;
+  vertical-align: super;
+  text-decoration: none;
+  margin-left: 0.3em;
+  color: #888;
+}
+a.permalink:hover{
+  color: #000;
+  text-decoration: underline;
+}
+
+</style>
+</head><body>
+<div class="main markdown-body">
+<h1 id="minipage---%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA%E9%9D%99%E7%9A%84%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF">minipage - シンプルな静的ページジェネレータ</h1>
+<p>( <a href="./index.html">English</a> / Japanese )</p>
+<!-- stdout: go run github.com/hymkor/example-into-readme/cmd/badges@latest -->
+<p><a href="https://github.com/hymkor/minipage/actions/workflows/go.yml"><img src="https://github.com/hymkor/minipage/actions/workflows/go.yml/badge.svg" alt="Go Test" /></a>
+<a href="https://github.com/hymkor/minipage/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-red" alt="License" /></a>
+<a href="https://pkg.go.dev/github.com/hymkor/minipage"><img src="https://pkg.go.dev/badge/github.com/hymkor/minipage.svg" alt="Go Reference" /></a>
+<a href="https://github.com/hymkor/minipage"><img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="GitHub" /></a></p>
+<!-- -->
+<p><strong>minipage</strong> は、余計な複雑さを排除し、簡単に使えることを目指した静的ページジェネレータです。Markdown ファイルを手軽に HTML に変換したい方に向いています。</p>
+<p><strong>GitHub Pages</strong> を使いたいけれど、既存の静的サイトジェネレータは複雑すぎる、あるいは重すぎると感じている方にも、<strong>minipage</strong> は軽量な選択肢となります。</p>
+<p><strong>minipage</strong> は、サイドバーやバナーなどの余計な装飾を排した、GitHub 風のすっきりした HTML を Markdown から生成します。1ページずつ生成する方式なので、<code>make</code> などのツールを使って、サイト全体の構成を自由に管理できます。</p>
+<h2 id="%E7%89%B9%E5%BE%B4">特徴</h2>
+<ul>
+<li><strong>高速・シンプル:</strong> 1つまたは複数の Markdown ファイルを、1つの HTML ページにまとめて1コマンドで変換できます。</li>
+<li><strong>レイアウトのカスタマイズ:</strong> 必要に応じてヘッダー、フッター、サイドバーを追加できます。</li>
+<li><strong>軽量な設計:</strong> 設定ファイルは不要で、シンプルなオプションだけで利用できます。</li>
+<li><strong>柔軟なワークフロー:</strong> <code>make</code> などのビルドツールから呼び出して、Web サイト全体を構築する用途を想定しています。</li>
+</ul>
+<h2 id="%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">インストール</h2>
+<h3 id="github-releases-%E3%81%8B%E3%82%89">GitHub Releases から</h3>
+<p><a href="https://github.com/hymkor/minipage/releases">リリースページ</a>から、お使いの OS とアーキテクチャに対応する <code>.zip</code> ファイルをダウンロードしてください。</p>
+<p>アーカイブを展開し、<code>minipage</code> 実行ファイルを <code>PATH</code> に登録されているディレクトリに配置します。</p>
+<h3 id="go-install-%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88%EF%BC%88%E5%85%A8-os-%E5%AF%BE%E5%BF%9C%EF%BC%89"><code>go install</code> を使う場合（全 OS 対応）</h3>
+<p>Go を使ってインストールする場合は、次のコマンドを実行してください。</p>
+<pre><code class="language-sh">go install github.com/hymkor/minipage@latest
+</code></pre>
+<h3 id="scoop-%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88%EF%BC%88windows%EF%BC%89">Scoop を使う場合（Windows）</h3>
+<p>Windows では、<a href="https://scoop.sh/">Scoop</a> を使ってインストールすることもできます。</p>
+<pre><code class="language-powershell">scoop install https://raw.githubusercontent.com/hymkor/minipage/master/minipage.json
+</code></pre>
+<p>または、<code>hymkor</code> バケットを追加してからインストールします。</p>
+<pre><code class="language-powershell">scoop bucket add hymkor https://github.com/hymkor/scoop-bucket
+scoop install hymkor/minipage
+</code></pre>
+<h2 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h2>
+<pre><code class="language-sh">minipage {options} SOURCE1 [SOURCE2 ...] &gt; OUTPUT.html
+</code></pre>
+<p><code>SOURCE</code> には、<strong>Markdown ファイルのパス</strong>または<strong>HTML の文字列</strong>を指定できます。</p>
+<p><code>minipage</code> は、指定された順番に入力を連結します。動作は <code>cat</code> コマンドに似ています。</p>
+<h3 id="%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3">オプション</h3>
+<ul>
+<li><code>-sidebar SIDEBAR.MD</code> — Markdown ファイルをサイドバーとして追加します。</li>
+<li><code>-css CSSURL</code> — CSS の URL を指定します（デフォルトは GitHub 風の CSS）。</li>
+<li><code>-title TITLE</code> — ページのタイトルを指定します。</li>
+<li><code>-anchor-text string</code> — アンカーのテキストを指定します（デフォルトは空文字列 <code>&quot;&quot;</code>）。</li>
+<li><code>-title-from-file file</code> — 指定したファイルから HTML のタイトルを読み込みます。</li>
+<li><code>-readme-to-index</code> — 相対アンカー URL のうち、ファイル名が <code>README</code> で始まるものを <code>index</code> に置き換えます。</li>
+<li><code>-outline-in-sidebar</code> — サイドバーに目次を出力します。</li>
+</ul>
+<h2 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h2>
+<h3 id="%E8%A4%87%E6%95%B0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8B%E3%82%89%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E7%94%9F%E6%88%90">複数ファイルからの基本的な生成</h3>
+<p>複数のセクションからなるページを生成する場合：</p>
+<pre><code class="language-sh">minipage header.md content.md footer.md &gt; index.html
+</code></pre>
+<h3 id="html-%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E7%9B%B4%E6%8E%A5%E6%B8%A1%E3%81%99">HTML 文字列を直接渡す</h3>
+<p>コマンドラインから HTML の断片を直接渡すこともできます。</p>
+<p>これは、元の <code>README.md</code> には含めたくないロゴなどの要素を追加する場合に便利です。</p>
+<p>入力が <code>&lt;</code> で始まる場合、minipage はそれをファイル名ではなく HTML として認識します。そのため、シェルによるリダイレクトと解釈されないよう、文字列を引用符で囲んでください。</p>
+<pre><code class="language-bash"># 先頭の '&lt;' によって、ファイルではなく HTML として認識される
+minipage &quot;&lt;img src='logo.png' align='left' width='100' /&gt;&quot; README.md &gt; index.html
+</code></pre>
+<h3 id="make-%E3%81%A8%E3%81%AE%E4%BD%B5%E7%94%A8"><code>make</code> との併用</h3>
+<p><code>make</code> と組み合わせることで、効率よくサイトを生成できます。</p>
+<pre><code class="language-makefile">all:
+	minipage header.md index.md footer.md &gt; index.html
+	minipage header.md about.md footer.md &gt; about.html
+</code></pre>
+<h2 id="%E4%BD%BF%E7%94%A8%E4%BE%8B-1">使用例</h2>
+<p>Windows 用コマンドラインシェルである <a href="https://nyaos.org/nyagos">nyagos</a> の Web サイトは、<strong>minipage</strong> を使って構築されています。</p>
+<p>また、minipage 自身のプロジェクトサイト用に、GitHub Pages のコンテンツを生成することもできます。</p>
+<p><strong>Makefile</strong></p>
+<pre><code class="language-makefile">docs:
+	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;minipage - Minimal Static Page Generator&quot; README.md &gt; docs/index.html
+	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;CHANGELOG&quot; CHANGELOG.md &gt; docs/CHANGELOG.html
+	&quot;./minipage&quot; -outline-in-sidebar -readme-to-index -title &quot;CHANGELOG&quot; CHANGELOG_ja.md &gt; docs/CHANGELOG_ja.html
+</code></pre>
+<p>この例では、Markdown のソースファイルから、GitHub Pages で公開するためのシンプルな HTML ページを生成しています。</p>
+<h2 id="%E6%8A%80%E8%A1%93%E7%9A%84%E3%81%AA%E8%A9%B3%E7%B4%B0">技術的な詳細</h2>
+<ul>
+<li><strong>Markdown から HTML への変換:</strong> Go 言語で実装された、CommonMark 準拠の拡張性・構造性に優れた Markdown パーサー <a href="https://github.com/yuin/goldmark">goldmark</a> を使用しています。</li>
+<li><strong>GitHub 風 CSS:</strong> GitHub の Markdown 表示に似せた、軽量な独自 CSS を使用しています。</li>
+<li><strong>アンカー URL の書き換え:</strong> 相対アンカー URL に含まれる <code>.md</code> 拡張子は、自動的に <code>.html</code> に書き換えられます。これにより、変換後も Markdown ファイル間のリンクが機能します。</li>
+</ul>
+<h2 id="minipage-%E3%81%8C%E5%90%91%E3%81%84%E3%81%A6%E3%81%84%E3%82%8B%E6%96%B9">minipage が向いている方</h2>
+<p>次のような点を重視する方に向けて、<strong>minipage</strong> は設計されています。</p>
+<ul>
+<li>余計な装飾のない、すっきりとした Markdown 表示</li>
+<li>複雑な設定を必要としない、簡単な使い方</li>
+<li>既存のツールと組み合わせられるシンプルなワークフロー</li>
+</ul>
+<h2 id="changelog">CHANGELOG</h2>
+<ul>
+<li><a href="CHANGELOG.html">英語版</a></li>
+<li><a href="CHANGELOG_ja.html">日本語版</a></li>
+</ul>
+<h2 id="%E4%BD%9C%E8%80%85">作者</h2>
+<p><a href="https://github.com/hymkor">hymkor (HAYAMA Kaoru)</a></p>
+<h2 id="%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9">ライセンス</h2>
+<p>MIT License</p>
+</div><!-- "main" -->
+<div class="sidebar markdown-body">
+<ul>
+<li><a href="#minipage-%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%AA%E9%9D%99%E7%9A%84%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF">minipage - シンプルな静的ページジェネレータ</a>
+<ul>
+<li><a href="#%E7%89%B9%E5%BE%B4">特徴</a></li>
+<li><a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">インストール</a>
+<ul>
+<li><a href="#github-releases-%E3%81%8B%E3%82%89">GitHub Releases から</a></li>
+<li><a href="#go-install-%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88%E5%85%A8-os-%E5%AF%BE%E5%BF%9C"><code>go install</code> を使う場合（全 OS 対応）</a></li>
+<li><a href="#scoop-%E3%82%92%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88windows">Scoop を使う場合（Windows）</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E3%81%84%E6%96%B9">使い方</a>
+<ul>
+<li><a href="#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3">オプション</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</a>
+<ul>
+<li><a href="#%E8%A4%87%E6%95%B0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8B%E3%82%89%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E7%94%9F%E6%88%90">複数ファイルからの基本的な生成</a></li>
+<li><a href="#html-%E6%96%87%E5%AD%97%E5%88%97%E3%82%92%E7%9B%B4%E6%8E%A5%E6%B8%A1%E3%81%99">HTML 文字列を直接渡す</a></li>
+<li><a href="#make-%E3%81%A8%E3%81%AE%E4%BD%B5%E7%94%A8"><code>make</code> との併用</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E4%BE%8B-1">使用例</a></li>
+<li><a href="#%E6%8A%80%E8%A1%93%E7%9A%84%E3%81%AA%E8%A9%B3%E7%B4%B0">技術的な詳細</a></li>
+<li><a href="#minipage-%E3%81%8C%E5%90%91%E3%81%84%E3%81%A6%E3%81%84%E3%82%8B%E6%96%B9">minipage が向いている方</a></li>
+<li><a href="#changelog">CHANGELOG</a></li>
+<li><a href="#%E4%BD%9C%E8%80%85">作者</a></li>
+<li><a href="#%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9">ライセンス</a></li>
+</ul>
+</li>
+</ul>
+</div><!-- "sidebar" -->
+</body></html>

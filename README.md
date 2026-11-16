@@ -1,5 +1,7 @@
 # minipage - Minimal Static Page Generator
 
+( English / [Japanese](./README_ja.md) )
+
 <!-- stdout: go run github.com/hymkor/example-into-readme/cmd/badges@latest -->
 [![Go Test](https://github.com/hymkor/minipage/actions/workflows/go.yml/badge.svg)](https://github.com/hymkor/minipage/actions/workflows/go.yml)
 [![License](https://img.shields.io/badge/License-MIT-red)](https://github.com/hymkor/minipage/blob/master/LICENSE)

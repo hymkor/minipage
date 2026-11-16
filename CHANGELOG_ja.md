@@ -1,6 +1,6 @@
 CHANGELOG
 =========
-[English](./release_note.md) / **Japanese** / [Top](./README.md)
+[English](./CHANGELOG.md) / **Japanese** / [Top](./README.md)
 
 - `~~` による取り消し線(strike)を有効にした (#10)
 

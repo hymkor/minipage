@@ -50,6 +50,7 @@ release:
 
 docs:
 	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README.md > docs/index.html
+	"./minipage" -outline-in-sidebar -readme-to-index -title "minipage - Minimal Static Page Generator" README_ja.md > docs/index_ja.html
 	"./minipage" -outline-in-sidebar -readme-to-index -title "CHANGELOG" CHANGELOG.md > docs/CHANGELOG.html
 	"./minipage" -outline-in-sidebar -readme-to-index -title "CHANGELOG" CHANGELOG_ja.md > docs/CHANGELOG_ja.html
 

@@ -1,6 +1,6 @@
 Changelog
 =========
-**English** / [Japanese](./release_note_ja.md) / [Top](./README.md)
+**English** / [Japanese](./CHANGELOG_ja.md) / [Top](./README.md)
 
 - Enabled strikethrough using `~~` (#10)
 

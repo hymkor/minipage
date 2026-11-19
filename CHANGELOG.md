@@ -2,6 +2,10 @@ Changelog
 =========
 **English** / [Japanese](./CHANGELOG_ja.md) / [Top](./README.md)
 
+v0.13.0
+-------
+Nov 19, 2026
+
 - Enabled strikethrough using `~~` (#10)
 
 v0.12.0

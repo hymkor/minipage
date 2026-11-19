@@ -2,6 +2,10 @@ CHANGELOG
 =========
 [English](./CHANGELOG.md) / **Japanese** / [Top](./README.md)
 
+v0.13.0
+-------
+Nov 19, 2026
+
 - `~~` による取り消し線(strike)を有効にした (#10)
 
 v0.12.0
